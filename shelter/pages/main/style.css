@@ -272,6 +272,41 @@ button {
 	padding-top: 163px;
 }
 
+.not__only-paragraf {
+	max-width: 460px;
+	font-family: 'Arial';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 160%;
+	color: #CDCDCD;
+	margin-top: 42px;
+}
+
+.button {
+	background: #F1CDB3;
+	border-radius: 100px;
+	border: #F1CDB3;
+	cursor: pointer;
+}
+
+.button:hover {
+	background: #FDDCC4;
+}
+
+.not__only-button {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+	color: #292929;
+	padding: 15px 45px 15px 45px;
+	margin-top: 42px;
+}
+
+
 /*////////////////////  START ABOUT  //////////////////////*/
 
 .about-container {
