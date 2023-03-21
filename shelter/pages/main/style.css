@@ -115,8 +115,6 @@ font-face {
 	font-display: swap;
 }
 
-
-
 a {
 	text-decoration: none;
 }
@@ -125,7 +123,6 @@ ul,
 li {
 	list-style: none;
 }
-
 
 html {
 	box-sizing: border-box;
@@ -178,6 +175,7 @@ button {
 	font-size: 15px;
 	line-height: 160%;
 	color: #CDCDCD;
+	padding-bottom: 3px;
 
 }
 
@@ -216,14 +214,14 @@ button {
 	margin: 10px 0 0 4px;
 }
 
-.header__item {
+/* .header__item {
 	font-family: 'Arial';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 15px;
 	line-height: 160%;
 	padding-bottom: 3px;
-}
+} */
 
 .header__item:active {
 	border-bottom: 3px solid #F1CDB3;
@@ -235,6 +233,11 @@ button {
 }
 
 .header__item:hover {
+	color: #FAFAFA;
+}
+
+.active {
+	border-bottom: 3px solid #F1CDB3;
 	color: #FAFAFA;
 }
 
@@ -283,8 +286,11 @@ button {
 	margin-top: 42px;
 }
 
-.button {
+.button__backgraund {
 	background: #F1CDB3;
+}
+
+.button {
 	border-radius: 100px;
 	border: #F1CDB3;
 	cursor: pointer;
@@ -294,7 +300,8 @@ button {
 	background: #FDDCC4;
 }
 
-.not__only-button {
+.not__only-button,
+.our__friends-button {
 	font-family: 'Georgia';
 	font-style: normal;
 	font-weight: 400;
@@ -302,17 +309,20 @@ button {
 	line-height: 130%;
 	letter-spacing: 0.06em;
 	color: #292929;
-	padding: 15px 45px 15px 45px;
-	margin-top: 42px;
+	padding: 14px 43px 13px 45px;
+
 }
 
+.not__only-button {
+	margin-top: 42px;
+}
 
 /*////////////////////  START ABOUT  //////////////////////*/
 
 .about-container {
 	display: flex;
 
-	padding: 80px 0 100px 0;
+	padding: 80px 0 68px 0;
 }
 
 .about-container-img {
@@ -350,21 +360,46 @@ button {
 
 
 
+
 /*////////////////////  END ABOUT  //////////////////////*/
 
 
 
 /*////////////////////  START OUR_FRIENDS  //////////////////////*/
+.our__friends {
+	background: #F6F6F6;
+}
 
 .our__friends-container {
+	/* display: flex;
+	flex-direction: column; */
+	/* align-items: center; */
+	padding: 80px 0 100px;
+	text-align: center;
+}
+
+.our__friends-h2-title {
+	max-width: 400px;
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+	color: #545454;
+}
+
+.title-about {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 }
 
 .our__friends-container-cards {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+	margin-top: 60px;
 }
 
 .slyder {
@@ -372,5 +407,79 @@ button {
 	align-items: center;
 }
 
+.button-frinds {
+	width: 52px;
+	height: 52px;
+	border: 2px solid #F1CDB3;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.our__friends-card {
+	margin-right: 90px;
+}
+
+.our__friends-card:last-child {
+	margin-right: 0;
+}
+
+.our__friends-card {
+	background: #FAFAFA;
+	border-radius: 9px;
+}
+
+.about-img {
+	margin-bottom: 26px;
+}
+
+.name-card {
+	margin-bottom: 30px;
+}
+
+.our__friends-name {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 23px;
+	letter-spacing: 0.06em;
+	color: #545454;
+}
+
+.button {
+	border: 2px solid #F1CDB3;
+	border-radius: 100px;
+}
+
+.our__friends-button {
+	margin-bottom: 30px;
+}
+
+.button__get-pets {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+	color: #292929;
+	background: #F1CDB3;
+	border-radius: 100px;
+	padding: 15px 45px 13px 43px;
+	margin-top: 60px;
+}
+
+.our__friends-card {
+	cursor: pointer;
+}
+
+.button-arrow {
+
+	width: 14px;
+	height: 6px;
+}
 
 /*////////////////////  START OUR_FRIENDS  //////////////////////*/
