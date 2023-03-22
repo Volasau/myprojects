@@ -498,6 +498,8 @@ button {
 
 
 /*////////////////////  END OUR_FRIENDS  //////////////////////*/
+
+/*////////////////////  START HELP  ///////////////////////////*/
 .help__container {
 	padding: 80px 0 45px 0;
 }
@@ -564,13 +566,105 @@ button {
 	margin-left: 6px;
 }
 
-/*////////////////////  START HELP  ///////////////////////////*/
-
-
 /*////////////////////  END HELP    ///////////////////////////*/
+
+
 
 /*////////////////////  START ADDITION  ///////////////////////*/
 
+.inaddition {
+	background: #F6F6F6;
+}
+
+.addition__container-wrap {
+	display: flex;
+	margin-left: 143px;
+	padding: 80px 0 100px 0;
+}
+
+.addition__title-h2 {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	display: flex;
+	align-items: center;
+	letter-spacing: 0.06em;
+	color: #545454;
+	margin-bottom: 20px;
+}
+
+.addition__bank {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	display: flex;
+	align-items: center;
+	letter-spacing: 0.06em;
+	color: #545454;
+	margin-bottom: 20px;
+}
+
+.addition__bank-info {
+	max-width: 349px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	background: #F1CDB3;
+	border-radius: 9px;
+}
+
+.bank-phone {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	display: flex;
+	align-items: center;
+	letter-spacing: 0.06em;
+	color: #545454;
+	padding: 9px 0px 10px 15px;
+}
+
+.addition__content-text {
+	max-width: 380px;
+	font-family: 'Arial';
+	font-style: italic;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 150%;
+	color: #B2B2B2;
+}
+
+.addition__content {
+	margin-left: 30px;
+}
+
+.bank-icon {
+	margin-left: 15px
+}
+
+.additoin__container-img {
+	margin-top: 11px;
+}
+
+.bank-icon {
+	display: flex;
+	align-items: center;
+}
+
+.link__bank {
+	cursor: pointer
+}
+
+.addition__bank-info:hover {
+	background: #FDDCC4;
+	transition: all 0.4s;
+}
 
 /*////////////////////  END ADDITION  ////////////////////////*/
 
