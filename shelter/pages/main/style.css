@@ -247,9 +247,6 @@ button {
 	vertical-align: bottom;
 }
 
-
-
-/*////////////////////  END NOT_ONLY  //////////////////////*/
 .not__only-h1-title {
 	max-width: 310px;
 	font-family: 'Georgia';
@@ -310,6 +307,8 @@ button {
 .not__only-button {
 	margin-top: 42px;
 }
+
+/*////////////////////  END NOT_ONLY  //////////////////////*/
 
 /*////////////////////  START ABOUT  //////////////////////*/
 
