@@ -363,7 +363,7 @@ button {
 }
 
 .name-card {
-	margin-bottom: 29px;
+	margin-bottom: 30px;
 }
 
 .our__friends-name {
@@ -430,6 +430,89 @@ button {
 	margin-bottom: 30px;
 }
 
+.our__friends-navigation {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 59px;
+}
+
+.button-navi {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #CDCDCD;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.but__center {
+	border: 2px solid #F1CDB3;
+	background: #F1CDB3;
+}
+
+.but__center:hover {
+	border: 2px solid #FDDCC4;
+	background: #FDDCC4;
+}
+
+.but__center::after {
+	content: '1';
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	letter-spacing: 0.06em;
+	color: #292929;
+}
+
+.but__one-left::after {
+	content: url('../../assets/images/pets/icon/one-left.svg');
+}
+
+.but__duble-left::after {
+	content: url('../../assets/images/pets/icon/two-left.svg')
+}
+
+.but__right {
+	border: 2px solid #F1CDB3;
+	border-radius: 100px;
+}
+
+.but__right:hover {
+	border: 2px solid #FDDCC4;
+	background: #FDDCC4;
+
+}
+
+.but__left:hover {
+	border: 2px solid #FDDCC4;
+	background: #FDDCC4;
+}
+
+/* .but__one-left:hover {
+	content: url('../../assets/images/pets/icon/one-right.svg');
+	transform: rotate(180deg);
+} */
+
+.but__duble-right::after {
+	content: url('../../assets/images/pets/icon/two-right.svg');
+}
+
+.but__one-right::after {
+	content: url('../../assets/images/pets/icon/one-right.svg')
+}
+
+.max {
+	max-width: 340px;
+	margin: 0 auto;
+}
+
+
+
+
 /*////////////////////  END OUR_FRIENDS  //////////////////////*/
 
 /*////////////////////  START HELP  ///////////////////////////*/
@@ -440,7 +523,7 @@ button {
 
 /*////////////////////  START ADDITION  ///////////////////////*/
 
-.inaddition {
+/* .inaddition {
 	background: #F6F6F6;
 }
 
@@ -532,7 +615,7 @@ button {
 .addition__bank-info:hover {
 	background: #FDDCC4;
 	transition: all 0.4s;
-}
+} */
 
 /*////////////////////  END ADDITION  ////////////////////////*/
 
@@ -596,11 +679,13 @@ button {
 }
 
 .footer__our-place {
-	margin-bottom: 34px;
+	margin-bottom: 32px;
+
 }
 
 .map-one {
-	margin-bottom: 32px;
+	margin-bottom: 33px;
+	margin-left: -2px;
 }
 
 .footer-text {
@@ -613,7 +698,11 @@ button {
 }
 
 .footer__our-adress {
-	margin-left: -4px
+	margin-left: -6px
+}
+
+.map-two {
+	margin-left: -2px;
 }
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
