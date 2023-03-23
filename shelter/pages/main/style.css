@@ -214,15 +214,6 @@ button {
 	margin: 10px 0 0 4px;
 }
 
-/* .header__item {
-	font-family: 'Arial';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 160%;
-	padding-bottom: 3px;
-} */
-
 .header__item:active {
 	border-bottom: 3px solid #F1CDB3;
 	color: #FAFAFA;
@@ -671,6 +662,81 @@ button {
 
 
 /*//////////////////////  START FOOTER  ///////////////////////*/
+.footer__background {
+	background: url('../../assets/images/footer-gradient-background.png'),
+		no-repeat,
+		radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+	background-size: 100%;
+}
 
+.footer__container {
+	padding-top: 40px;
+}
+
+.footer__container-wrap {
+	display: flex;
+	justify-content: space-between;
+}
+
+.h3-ttitle {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+	color: #FFFFFF;
+}
+
+.footer-text {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	letter-spacing: 0.06em;
+	color: #F1CDB3;
+}
+
+.footer__number-phone,
+.footer__email-adress,
+.footer__map-adress {
+	display: flex;
+	align-items: center;
+}
+
+.footer__img {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.footer__questions {
+	margin-bottom: 40px;
+}
+
+.footer__email-adress {
+	margin-bottom: 40px;
+}
+
+.footer__our-place {
+	margin-bottom: 34px;
+}
+
+.map-one {
+	margin-bottom: 32px;
+}
+
+.footer-text {
+	margin-left: 20px
+}
+
+.footer__conetct,
+.footer__our-adress {
+	margin-top: 16px
+}
+
+.footer__our-adress {
+	margin-left: -4px
+}
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
