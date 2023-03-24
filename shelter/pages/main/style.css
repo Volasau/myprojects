@@ -723,6 +723,7 @@ button {
 
 .map-one {
 	margin-bottom: 32px;
+	margin-left: -3px;
 }
 
 .footer-text {
@@ -735,7 +736,11 @@ button {
 }
 
 .footer__our-adress {
-	margin-left: -4px
+	margin-left: -7px
+}
+
+.map-two {
+	margin-left: -3px;
 }
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
