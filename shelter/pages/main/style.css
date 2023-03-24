@@ -556,6 +556,12 @@ button {
 	margin-left: 6px;
 }
 
+/* .help__item:hover {
+	background-color: #f3e8e0;
+	transition: all 0.3s;
+	cursor: pointer;
+} */
+
 /*////////////////////  END HELP    ///////////////////////////*/
 
 
@@ -741,6 +747,16 @@ button {
 
 .map-two {
 	margin-left: -3px;
+}
+
+.footer__map-adress:hover>.footer-text {
+	color: #f9e0ce;
+	transition: all 0.3s;
+}
+
+.footer__for-quest:hover>.footer-text {
+	color: #f9e0ce;
+	transition: all 0.3s;
 }
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
