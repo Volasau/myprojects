@@ -484,7 +484,7 @@ button {
 .but__right:hover {
 	border: 2px solid #FDDCC4;
 	background: #FDDCC4;
-
+	transition: all 0.4s;
 }
 
 /* .but__left:hover {
