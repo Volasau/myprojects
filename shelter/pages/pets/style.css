@@ -156,7 +156,7 @@ button {
 .header__container {
 	display: flex;
 	justify-content: space-between;
-	padding: 30px 0 30px 0;
+	padding: 31px 0 30px 0;
 }
 
 .navigation__header-link {
@@ -250,32 +250,13 @@ button {
 
 /*////////////////////  END HEADER  /////////////////////////*/
 
-/*////////////////////  START NOT_ONLY  //////////////////////*/
-
-
-/*////////////////////  END NOT_ONLY  //////////////////////*/
-
-/*////////////////////  START ABOUT  //////////////////////*/
-
-
-
-
-
-
-/*////////////////////  END ABOUT  //////////////////////*/
-
-
-
 /*////////////////////  START OUR_FRIENDS  //////////////////////*/
 .our__friends {
 	background: #F6F6F6;
 }
 
 .our__friends-container {
-	/* display: flex;
-	flex-direction: column; */
-	/* align-items: center; */
-	padding: 80px 0 100px;
+	padding: 79px 0 100px;
 	text-align: center;
 }
 
@@ -297,10 +278,7 @@ button {
 }
 
 .our__friends-container-cards {
-	/* display: flex;
-	justify-content: space-between;
-	align-items: center; */
-	margin-top: 60px;
+	margin-top: 59px;
 }
 
 .slyder {
@@ -323,16 +301,6 @@ button {
 
 }
 
-/* .button-frinds {
-	width: 52px;
-	height: 52px;
-	border: 2px solid #F1CDB3;
-	border-radius: 100px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-} */
 
 .our__friends-card {
 	margin-right: 0px;
@@ -363,7 +331,7 @@ button {
 }
 
 .name-card {
-	margin-bottom: 30px;
+	margin-bottom: 29px;
 }
 
 .our__friends-name {
@@ -433,12 +401,12 @@ button {
 .our__friends-navigation {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 59px;
+	margin-top: 62px;
 }
 
 .button-navi {
-	width: 50px;
-	height: 50px;
+	width: 48px;
+	height: 48px;
 	border: 2px solid #CDCDCD;
 	border-radius: 100px;
 	display: flex;

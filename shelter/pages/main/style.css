@@ -364,9 +364,6 @@ button {
 }
 
 .our__friends-container {
-	/* display: flex;
-	flex-direction: column; */
-	/* align-items: center; */
 	padding: 80px 0 100px;
 	text-align: center;
 }
@@ -402,8 +399,8 @@ button {
 }
 
 .button-frinds {
-	width: 52px;
-	height: 52px;
+	width: 48px;
+	height: 48px;
 	border: 2px solid #F1CDB3;
 	border-radius: 100px;
 	display: flex;
@@ -473,8 +470,8 @@ button {
 	color: #292929;
 	background: #F1CDB3;
 	border-radius: 100px;
-	padding: 15px 43px 14px 43px;
-	margin-top: 57px;
+	padding: 13px 43px 14px 43px;
+	margin-top: 59px;
 }
 
 .our__friends-card {
