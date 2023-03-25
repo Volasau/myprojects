@@ -156,7 +156,7 @@ button {
 .header__container {
 	display: flex;
 	justify-content: space-between;
-	padding-top: 60px;
+	padding: 31px 0px 30px 0;
 }
 
 .navigation__header-link {
@@ -175,7 +175,7 @@ button {
 	font-size: 15px;
 	line-height: 160%;
 	color: #CDCDCD;
-	padding-bottom: 3px;
+	padding-bottom: 4px;
 
 }
 
@@ -272,7 +272,7 @@ button {
 	font-size: 15px;
 	line-height: 160%;
 	color: #CDCDCD;
-	margin-top: 42px;
+	margin-top: 41px;
 }
 
 .button__backgraund {
@@ -300,12 +300,12 @@ button {
 	line-height: 130%;
 	letter-spacing: 0.06em;
 	color: #292929;
-	padding: 14px 43px 13px 45px;
+	padding: 14px 42px 13px 43px;
 
 }
 
 .not__only-button {
-	margin-top: 42px;
+	margin-top: 40px;
 }
 
 /*////////////////////  END NOT_ONLY  //////////////////////*/
@@ -332,7 +332,7 @@ button {
 	line-height: 130%;
 	color: #545454;
 	letter-spacing: 0.06em;
-	margin-top: 14px;
+	margin-top: 13px;
 }
 
 .about__paragraf-one,
@@ -386,13 +386,14 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 2px 0 0 0;
 }
 
 .our__friends-container-cards {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 60px;
+	margin-top: 58px;
 }
 
 .slyder {
@@ -472,8 +473,8 @@ button {
 	color: #292929;
 	background: #F1CDB3;
 	border-radius: 100px;
-	padding: 15px 45px 13px 43px;
-	margin-top: 60px;
+	padding: 15px 43px 14px 43px;
+	margin-top: 57px;
 }
 
 .our__friends-card {
@@ -491,7 +492,7 @@ button {
 
 /*////////////////////  START HELP  ///////////////////////////*/
 .help__container {
-	padding: 80px 0 45px 0;
+	padding: 79px 0 45px 0;
 }
 
 .help__h2-title {
@@ -545,7 +546,7 @@ button {
 .item8,
 .item7, */
 .item6 {
-	margin-left: 118px;
+	margin-left: 121px;
 }
 
 .icon8 {
@@ -575,7 +576,7 @@ button {
 .addition__container-wrap {
 	display: flex;
 	margin-left: 143px;
-	padding: 80px 0 100px 0;
+	padding: 81px 0 100px 0;
 }
 
 .addition__title-h2 {
@@ -675,7 +676,7 @@ button {
 }
 
 .footer__container {
-	padding-top: 40px;
+	padding-top: 41px;
 }
 
 .footer__container-wrap {
@@ -716,7 +717,7 @@ button {
 }
 
 .footer__questions {
-	margin-bottom: 40px;
+	margin-bottom: 39px;
 }
 
 .footer__email-adress {
@@ -724,11 +725,11 @@ button {
 }
 
 .footer__our-place {
-	margin-bottom: 34px;
+	margin-bottom: 32px;
 }
 
 .map-one {
-	margin-bottom: 32px;
+	margin-bottom: 33px;
 	margin-left: -3px;
 }
 
