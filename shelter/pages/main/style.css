@@ -913,7 +913,7 @@ button {
 
 	/*HELP*/
 	.help__container {
-		padding: 79px 0 43px 0;
+		padding: 79px 0 46px 0;
 	}
 
 	.help__list-container {
@@ -921,47 +921,18 @@ button {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		transition: all 0.5s;
 	}
 
 	.help__item {
-		margin-right: 60px;
-		margin-bottom: 57px;
-	}
-
-	.item1 {
-		margin-left: 46px;
-		margin-right: 54px;
-	}
-
-	.item3 {
-		margin-right: 56px;
-	}
-
-	.item5 {
-		margin-right: 88px;
-	}
-
-	.item6 {
-		margin-right: 36px;
-	}
-
-	.item7 {
-		margin-left: 32px;
-		margin-right: 70px;
-	}
-
-	.item4 {
-		margin-left: 10px;
-	}
-
-	.item8 {
-		margin-right: 55px;
-
-	}
-
-	.item9 {
-		margin-right: 10px;
-
+		/* margin-right: 60px;
+		margin-bottom: 57px; */
+		width: 27%;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 56px;
 	}
 
 	/*END HELP*/
