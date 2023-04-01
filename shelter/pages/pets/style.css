@@ -591,12 +591,6 @@ button {
 		margin: 0 auto;
 	}
 
-
-	.title-h2 {
-		font-size: 7.8vw;
-
-	}
-
 	/*START OUR FRIENDS*/
 	.slyder {
 		width: 94%;
@@ -608,7 +602,7 @@ button {
 	}
 
 	.our__friends-navigation {
-		margin-top: 13%;
+		margin-top: 12.4%;
 	}
 
 	.our__friends-container {
@@ -646,8 +640,6 @@ button {
 
 @media screen and (max-width: 770px) {
 
-	.container {}
-
 	.our__friends-container-cards {
 		margin-top: 30px;
 	}
@@ -666,8 +658,6 @@ button {
 		margin: 0 auto;
 	}
 
-
-
 	.header__burger {
 		display: block;
 	}
@@ -676,10 +666,17 @@ button {
 		display: none;
 	}
 
+	.header__container {
+		display: flex;
+		align-items: center;
+	}
+
 	/*END HEADER*/
 
 	/*START OUR FRIENDS*/
-
+	/* .title-h2 {
+		font-size: 7.8vw;
+	} */
 
 	/*START FOOTER*/
 	.h3-ttitle {
@@ -748,6 +745,13 @@ button {
 	/*END FOOTER*/
 }
 
+@media screen and (max-width:430px) {
+
+	.title-h2 {
+		font-size: 7.8vw;
+	}
+}
+
 @media screen and (max-width:330px) {
 
 	.header__container {
@@ -776,5 +780,9 @@ button {
 	.card-5,
 	.card-6 {
 		display: none
+	}
+
+	.footer__container {
+		padding-top: 27.5px;
 	}
 }
