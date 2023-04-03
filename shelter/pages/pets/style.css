@@ -585,6 +585,24 @@ button {
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
 
+@media screen and (max-width: 1279px) {
+	.container {
+		max-width: 93.75%
+	}
+}
+
+
+@media screen and (max-width: 863px) {
+	.slyder {
+		width: 94%;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+}
+
 @media screen and (max-width:810px) {
 	.container {
 		max-width: 92%;
@@ -745,12 +763,14 @@ button {
 	/*END FOOTER*/
 }
 
-/* @media screen and (max-width:430px) {
+@media screen and (max-width:612px) {
 
-	.title-h2 {
-		font-size: 7.8vw;
+	.card-4,
+	.card-5,
+	.card-6 {
+		display: none
 	}
-} */
+}
 
 @media screen and (max-width:330px) {
 
@@ -774,12 +794,6 @@ button {
 
 	.our__friends-container {
 		padding: 12.6% 0 13%;
-	}
-
-	.card-4,
-	.card-5,
-	.card-6 {
-		display: none
 	}
 
 	.footer__container {
