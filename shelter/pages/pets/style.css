@@ -674,16 +674,16 @@ button {
 	/*END HEADER*/
 
 	/*START OUR FRIENDS*/
-	/* .title-h2 {
-		font-size: 7.8vw;
-	} */
+	.title-h2 {
+		font-size: calc(25px + (16 + 16*0.7)*((100vw - 320px) / 1280));
+	}
 
 	/*START FOOTER*/
 	.h3-ttitle {
 		font-family: 'Georgia';
 		font-style: normal;
 		font-weight: 400;
-		font-size: 25px;
+		font-size: calc(25px + (10 + 10*0.7)*((100vw - 320px) / 1280));
 		line-height: 130%;
 		text-align: center;
 		letter-spacing: 0.06em;
@@ -745,12 +745,12 @@ button {
 	/*END FOOTER*/
 }
 
-@media screen and (max-width:430px) {
+/* @media screen and (max-width:430px) {
 
 	.title-h2 {
 		font-size: 7.8vw;
 	}
-}
+} */
 
 @media screen and (max-width:330px) {
 

@@ -822,6 +822,37 @@ button {
 		margin: 100px 0 0 138px
 	}
 
+	/*ABOUT*/
+
+	.about-container {
+		display: flex;
+		flex-direction: column-reverse;
+		padding: 65px 0 95px 0;
+		margin-left: 50px;
+	}
+
+	.about__paragraf-one,
+	.about__paragraf-two {
+		max-width: 74%;
+	}
+
+	.about-container-img {
+		margin: 0 0 0 193.5px;
+	}
+
+	.about__content {
+		margin-left: 138px;
+	}
+
+	.about-img {
+		width: 300px;
+		height: 408px;
+		margin-top: 79px;
+		margin-left: 10px;
+	}
+
+	/**/
+
 	.our__friends-card {
 		margin-right: 40px;
 	}
@@ -855,9 +886,9 @@ button {
 		width: 100%;
 	}
 
-	.about-img {
+	/* .about-img {
 		width: 100%;
-	}
+	} */
 
 	.footer__img {
 		width: 100%;
@@ -887,19 +918,19 @@ button {
 
 
 	/*ABOUT*/
-	.about-container {
+	/* .about-container {
 		display: flex;
 		flex-direction: column-reverse;
 		padding: 65px 0 95px 0;
 		margin-left: 50px;
-	}
+	} */
 
-	.about-img {
+	/* .about-img {
 		width: 300px;
 		height: 408px;
 		margin-top: 79px;
 		margin-left: 10px;
-	}
+	} */
 
 	/*END ABOUT*/
 
@@ -992,18 +1023,23 @@ button {
 		padding: 31px 20px 30px;
 	}
 
+
 	.title-h2 {
 		font-family: 'Georgia';
 		font-style: normal;
 		font-weight: 400;
-		font-size: 1.67rem;
+		font-size: calc(25px + (10 + 10*0.7)*((100vw - 320px) / 1280));
 		line-height: 130%;
 		display: flex;
 		align-items: center;
 		text-align: center;
 		letter-spacing: 0.06em;
-
 	}
+
+	.not__only-h2-title {
+		font-size: calc(25px + (19 + 19*0.7)*((100vw - 320px) / 768));
+	}
+
 
 	.container {
 		max-width: 93.75%;
@@ -1073,6 +1109,11 @@ button {
 		margin: 0 15px;
 	}
 
+	.about__paragraf-one,
+	.about__paragraf-two {
+		max-width: 100%;
+	}
+
 	.about-img {
 		width: 260px;
 		height: 353.6px;
@@ -1140,7 +1181,6 @@ button {
 	}
 
 	.help__item {
-		width: 47%;
 		margin: 0;
 		display: flex;
 		flex-direction: column;
@@ -1158,7 +1198,7 @@ button {
 	}
 
 	.help__icon-text {
-		font-size: 1rem;
+		font-size: calc(15px + (5 + 5*0.7)*((100vw - 320px) / 1280));
 	}
 
 	.title-help {
@@ -1225,7 +1265,7 @@ button {
 		font-family: 'Georgia';
 		font-style: normal;
 		font-weight: 400;
-		font-size: 25px;
+		font-size: calc(25px + (10 + 10*0.7)*((100vw - 320px) / 1280));
 		line-height: 130%;
 		/* or 32px */
 
@@ -1284,5 +1324,12 @@ button {
 
 	.map-two {
 		margin-left: -30px;
+	}
+}
+
+
+@media screen and (max-width: 440px) {
+	.help__item {
+		width: 47%;
 	}
 }
