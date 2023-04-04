@@ -591,6 +591,18 @@ button {
 	}
 }
 
+@media screen and (max-width: 1151px) {
+
+	.card-7,
+	.card-8 {
+		display: none;
+	}
+
+	.card-4 {
+		margin-bottom: 0px;
+	}
+}
+
 
 @media screen and (max-width: 863px) {
 	.slyder {
@@ -600,6 +612,10 @@ button {
 		flex-wrap: wrap;
 		justify-content: space-evenly;
 		align-items: center;
+	}
+
+	.card-4 {
+		margin-bottom: 30px;
 	}
 }
 
