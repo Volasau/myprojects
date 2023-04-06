@@ -11,13 +11,6 @@ const links = document.querySelectorAll(".header__item");
 const menuCloseRandon = document.querySelector(".navigation__header");
 const shadowe = document.querySelector(".shadowe");
 function burger() {
-  //   const burgerItem = document.querySelector(".burger");
-  //   const menu = document.querySelector(".navigation__header");
-  //   const body = document.querySelector("body");
-  //   const links = document.querySelectorAll(".header__item");
-  //   const menuCloseRandon = document.querySelector(".navigation__header");
-  //   const shadowe = document.querySelector(".shadowe");
-
   burgerItem.addEventListener("click", () => {
     console.log("hello");
     menu.classList.toggle("navigation__header_active");

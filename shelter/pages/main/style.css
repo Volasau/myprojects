@@ -1089,14 +1089,14 @@ button {
 		transform: translateX(100%);
 		transition: 0.4s all linear;
 		display: grid;
-		padding-top: 21px;
+		padding-top: 22px;
 	}
 
 	.navigation__header_active {
 		transform: none;
 	}
 
-	.border .header__burger-open {
+	.header__burger-open {
 		transform: rotate(90deg);
 		transform: 0.4s all linear;
 	}
