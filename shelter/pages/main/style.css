@@ -819,7 +819,7 @@ button {
 }
 
 .pop__wraper {
-	height: 90%;
+	height: 92%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -845,10 +845,19 @@ button {
 .icon__close:hover {
 	background-color: #F1CDB3;
 	transition: all .3s ease-out;
+	cursor: pointer;
 }
 
 .icon__close:hover svg path {
+	width: 15px;
+	height: 15px;
 	fill: red
+}
+
+.icon__close:hover svg {
+	width: 20px;
+	height: 20px;
+	transition: all .3s ease-out;
 }
 
 .pop__card {
@@ -1141,39 +1150,17 @@ button {
 		color: #F1CDB3
 	}
 
-	.pop__nex {
+	/* .pop__nex {
 		font-family: 'Georgia';
 		font-style: normal;
 		font-weight: 700;
 		font-size: 15px;
 		line-height: 110%;
-		/* identical to box height, or 17px */
-		letter-spacing: 0.06em;
-
-		color: #000000;
-	}
-
-	/* .pop__name {
-		font-family: 'Georgia';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 35px;
-		line-height: 130%;
 		letter-spacing: 0.06em;
 		color: #000000;
-		margin-bottom: 10px;
 	} */
 
-
 	.waht__pop {
-		/* font-family: 'Georgia';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 20px;
-		line-height: 115%;
-		letter-spacing: 0.06em;
-		color: #000000; */
-
 		margin-bottom: 20px;
 	}
 
@@ -1200,18 +1187,6 @@ button {
 
 	.li {
 		margin-bottom: 6px;
-	}
-
-	.li:last-child {
-		margin-bottom: 0;
-	}
-
-	.pop {
-		display: none;
-	}
-
-	.pop__open {
-		display: block;
 	}
 
 	/**/
@@ -1702,6 +1677,79 @@ button {
 
 	.map-two {
 		margin-left: -30px;
+	}
+
+	/*POPAP*/
+	.pop__img {
+		display: none;
+	}
+
+	.pop__wraper-close {
+		margin-left: 250px;
+	}
+
+	.icon__close:hover {
+		background-color: #F1CDB3;
+		transition: all .3s ease-out;
+	}
+
+	.icon__close:hover svg path {
+		fill: red
+	}
+
+	.pop__card {
+		display: flex;
+		max-width: 240px;
+		height: 341px;
+		background: #FAFAFA;
+		border-radius: 9px;
+	}
+
+	.pop__content {
+		padding: 10px;
+		margin-left: 0;
+		overflow-y: auto;
+
+	}
+
+	.li {
+		list-style: disc;
+		color: #F1CDB3
+	}
+
+	.pop__content {
+		text-align: center;
+	}
+
+	.waht__pop {
+		margin-bottom: 20px;
+	}
+
+	.pop__info,
+	.pop__paragraf-content {
+		font-size: 13px;
+	}
+
+	.pop__paragraf-content {
+		text-align: justify;
+		margin-bottom: 24px;
+	}
+
+	.pop__ul {
+		margin-left: 14px;
+		text-align: left;
+	}
+
+	.pop__img {
+		border-radius: 9px;
+	}
+
+	.pop__paragraf-content {
+		margin-right: 0px;
+	}
+
+	.li {
+		margin-bottom: 6px;
 	}
 }
 
