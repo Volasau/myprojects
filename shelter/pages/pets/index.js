@@ -47,12 +47,12 @@ for (let i = 0; i < card.length; i++) {
   });
 }
 
-document.querySelectorAll("#pop .pop__card").forEach((element) => {
+document.querySelectorAll(".pop .pop__card").forEach((element) => {
   element.addEventListener("click", (event) => {
     event._isClickWithInModal = true;
   });
 });
-document.querySelectorAll("#pop").forEach((element) => {
+document.querySelectorAll(".pop").forEach((element) => {
   element.addEventListener("click", (event) => {
     if (event._isClickWithInModal) return;
     event.currentTarget.classList.remove("pop__open");
