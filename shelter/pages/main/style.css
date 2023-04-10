@@ -1080,33 +1080,6 @@ button {
 		height: 350px;
 	}
 
-	/* .pop {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.7);
-		top: 0;
-		left: 0;
-		z-index: 99998;
-	} */
-
-	/* .popup__area {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-	} */
-
-	/* .pop__wraper {
-		height: 90%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		z-index: 1;
-	} */
-
 	.icon__close {
 		width: 50px;
 		height: 50px;
@@ -1149,16 +1122,6 @@ button {
 		list-style: disc;
 		color: #F1CDB3
 	}
-
-	/* .pop__nex {
-		font-family: 'Georgia';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 15px;
-		line-height: 110%;
-		letter-spacing: 0.06em;
-		color: #000000;
-	} */
 
 	.waht__pop {
 		margin-bottom: 20px;

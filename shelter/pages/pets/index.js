@@ -27,3 +27,37 @@ function closeBurgerMenu() {
   body.classList.remove("lock");
   shadowe.classList.remove("shadowe__active");
 }
+
+/// MODAL
+
+let card = document.querySelectorAll("*[data-modal-card]");
+
+for (let i = 0; i < card.length; i++) {
+  card[i].addEventListener("click", () => {
+    let name = card[i].getAttribute("data-modal-card");
+    let modal = document.querySelector("[data-modal-window='" + name + "']");
+    modal.classList.add("pop__open");
+    body.classList.add("lock");
+
+    let close = modal.querySelector(".icon__close");
+    close.addEventListener("click", () => {
+      modal.classList.remove("pop__open");
+      body.classList.remove("lock");
+    });
+  });
+}
+
+document.querySelectorAll("#pop .pop__card").forEach((element) => {
+  element.addEventListener("click", (event) => {
+    event._isClickWithInModal = true;
+  });
+});
+document.querySelectorAll("#pop").forEach((element) => {
+  element.addEventListener("click", (event) => {
+    if (event._isClickWithInModal) return;
+    event.currentTarget.classList.remove("pop__open");
+    body.classList.remove("lock");
+  });
+});
+
+/// MODAL
