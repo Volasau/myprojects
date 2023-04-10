@@ -788,6 +788,164 @@ button {
 	transition: all 0.3s;
 }
 
+/*////////////////          MODAL          /////////////////*/
+.pop {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	top: 0;
+	left: 0;
+	z-index: 99998;
+}
+
+.popup__area {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.pop__wraper {
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+
+	/* text-align: center; */
+
+}
+
+.icon__close {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #F1CDB3;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+.pop__wraper-close {
+	margin-left: 930px;
+}
+
+.icon__close:hover {
+	background-color: #F1CDB3;
+	transition: all .3s ease-out;
+}
+
+.icon__close:hover svg path {
+	fill: red
+}
+
+.pop__card {
+	display: flex;
+	max-width: 900px;
+	height: 500px;
+	background: #FAFAFA;
+	border-radius: 9px;
+}
+
+.pop__content {
+	padding-top: 50px;
+	margin-left: 30px;
+
+}
+
+.li {
+	list-style: disc;
+	color: #F1CDB3
+}
+
+.pop__nex {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 110%;
+	/* identical to box height, or 17px */
+	letter-spacing: 0.06em;
+
+	color: #000000;
+}
+
+.pop__name {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 130%;
+	letter-spacing: 0.06em;
+	color: #000000;
+	margin-bottom: 10px;
+}
+
+
+.waht__pop {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 115%;
+	/* identical to box height, or 23px */
+
+	letter-spacing: 0.06em;
+
+	color: #000000;
+
+	margin-bottom: 40px;
+}
+
+.pop__info,
+.pop__paragraf-content {
+	font-family: 'Georgia';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 110%;
+	letter-spacing: 0.06em;
+	color: #000000;
+}
+
+.pop__paragraf-content {
+	margin-bottom: 42px;
+}
+
+.pop__ul {
+	margin-left: 14px;
+}
+
+.pop__img {
+	border-radius: 9px;
+}
+
+.pop__paragraf-content {
+	margin-right: 20px;
+}
+
+.li {
+	margin-bottom: 11px;
+}
+
+.li:last-child {
+	margin-bottom: 0;
+}
+
+.pop {
+	display: none;
+}
+
+.pop__open {
+	display: block;
+}
+
+/*//////////////////          MODAL          ///////////////*/
+
 /*//////////////////////  END FOOTER  /////////////////////////*/
 
 @media screen and (max-width: 1279px) {
