@@ -1026,6 +1026,10 @@ button {
 	transform: scale(1);
 }
 
+.pop__img {
+	border-radius: 9px 0 0 9px;
+}
+
 /*//////////////////          MODAL          ///////////////*/
 
 /*//////////////////////  END FOOTER  /////////////////////////*/
@@ -1045,6 +1049,10 @@ button {
 	.our__friends {
 		display: block;
 	}
+
+	/* .our__friends {
+		display: none;
+	} */
 
 	/*////////////////////  START OUR_FRIENDS  //////////////////////*/
 	.our__friends {
@@ -1185,6 +1193,55 @@ button {
 
 @media screen and (max-width: 1170px) {
 
+	/*zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz*/
+
+	.wrapper1 {
+		width: 670px;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+
+	.carusel1 {
+		/* display: flex; */
+		position: relative;
+		left: -670px;
+	}
+
+
+	@keyframes drive-right {
+		from {
+			left: -670px
+		}
+
+		to {
+			left: -1340px
+		}
+	}
+
+	.transition-right {
+		animation-name: drive-right;
+		animation-duration: 5s;
+	}
+
+	@keyframes drive-left {
+		from {
+			left: -670px
+		}
+
+		to {
+			left: 0px
+		}
+	}
+
+	.transition-left {
+		animation-name: drive-left;
+		animation-duration: 5s;
+	}
+
+
+
+	/*zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz*/
+
 	.not__only-h2-title {
 		max-width: 80%;
 	}
@@ -1256,7 +1313,9 @@ button {
 		margin-right: 0;
 	}
 
-	.card-3 {
+	.card-3,
+	.card-6,
+	.card-9 {
 		display: none;
 	}
 
