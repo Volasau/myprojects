@@ -1,6 +1,6 @@
 let vertical = 10;
 let gorisontal = vertical;
-let mines = 90;
+let mines = 20;
 let sizeMines = 23;
 
 const body = document.getElementsByTagName('body')[0];
@@ -100,18 +100,64 @@ function startGame(vertical, gorisontal, mines) {
         .sort(() => Math.random() - 0.5)
         .splice(0, mines);
     }
+    open(row, colum);
 
+    // if (isMine(row, colum)) {
+    //   const audio = new Audio('./assets/sound/notwin.mp3');
+    //   audio.play();
+    //   event.target.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+    // } else {
+    //   const audio = new Audio('./assets/sound/open.mp3');
+    //   audio.play();
+    //   event.target.innerHTML = ' ';
+    // }
+    // event.target.disabled = true;
+  });
+
+  function isValid(row, colum) {
+    return row >= 0 && row < gorisontal && colum >= 0 && colum < vertical;
+  }
+
+  function writeNumber(row, colum) {
+    let number = 0;
+    for (let i = -1; i <= 1; i++) {
+      for (j = -1; j <= 1; j++) {
+        if (isMine(row + j, colum + i)) {
+          number++;
+        }
+      }
+    }
+    return number;
+  }
+
+  function open(row, colum) {
+    const index = row * vertical + colum;
+    const cell = cells[index];
     if (isMine(row, colum)) {
       const audio = new Audio('./assets/sound/notwin.mp3');
       audio.play();
-      event.target.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+      cell.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+      cells.forEach((button, index) => {
+        const colum = index % vertical;
+        const row = Math.floor(index / vertical);
+        if (isMine(row, colum)) {
+          button.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+        } else {
+          button.innerHTML = writeNumber(row, colum);
+        }
+        button.disabled = true;
+      });
+      setTimeout(() => {
+        alert('Game over. Try again');
+      }, 300);
+      return;
     } else {
       const audio = new Audio('./assets/sound/open.mp3');
       audio.play();
-      event.target.innerHTML = ' ';
+      cell.innerHTML = writeNumber(row, colum);
     }
-    event.target.disabled = true;
-  });
+    cell.disabled = true;
+  }
 
   function isMine(row, colum) {
     const index = row * vertical + colum;
