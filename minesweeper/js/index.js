@@ -101,17 +101,6 @@ function startGame(vertical, gorisontal, mines) {
         .splice(0, mines);
     }
     open(row, colum);
-
-    // if (isMine(row, colum)) {
-    //   const audio = new Audio('./assets/sound/notwin.mp3');
-    //   audio.play();
-    //   event.target.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
-    // } else {
-    //   const audio = new Audio('./assets/sound/open.mp3');
-    //   audio.play();
-    //   event.target.innerHTML = ' ';
-    // }
-    // event.target.disabled = true;
   });
 
   function isValid(row, colum) {
