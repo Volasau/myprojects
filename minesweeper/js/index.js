@@ -1,6 +1,6 @@
 let vertical = 10;
 let gorisontal = vertical;
-let mines = 20;
+let mines = 5;
 let sizeMines = 23;
 
 const body = document.getElementsByTagName('body')[0];
@@ -67,6 +67,8 @@ function startGame(vertical, gorisontal, mines) {
   place.innerHTML = '<button></button>'.repeat(areaBtn);
   const cells = [...place.children];
 
+  let finish = areaBtn;
+
   cells.forEach((button) => {
     button.setAttribute('type', 'button');
     button.addEventListener('contextmenu', (event) => {
@@ -123,6 +125,8 @@ function startGame(vertical, gorisontal, mines) {
     if (!isValid(row, colum)) return;
     const index = row * vertical + colum;
     const cell = cells[index];
+    if (cell.disabled) return;
+    cell.disabled = true;
     if (isMine(row, colum)) {
       const audio = new Audio('./assets/sound/notwin.mp3');
       audio.play();
@@ -145,9 +149,41 @@ function startGame(vertical, gorisontal, mines) {
     } else {
       const audio = new Audio('./assets/sound/open.mp3');
       audio.play();
-      cell.innerHTML = writeNumber(row, colum);
+      const count = writeNumber(row, colum);
+
+      if (count === 0) {
+        cell.innerHTML = '';
+        cell.disabled = true;
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            open(row + j, colum + i);
+          }
+        }
+      } else {
+        if (count === 1) {
+          cell.innerHTML = `<span class='one'>1</span>`;
+        } else if (count === 2) {
+          cell.innerHTML = `<span class='two'>2</span>`;
+        } else if (count === 3) {
+          cell.innerHTML = `<span class='three'>3</span>`;
+        } else if (count === 4) {
+          cell.innerHTML = `<span class='four'>4</span>`;
+        } else if (count > 4) {
+          cell.innerHTML = `<span class='five'>${count}</span>`;
+        }
+        cell.disabled = true;
+      }
+      finish--;
+
+      if (finish <= mines) {
+        const audio = new Audio('./assets/sound/ura.mp3');
+        audio.play();
+        setTimeout(() => {
+          alert('You WIN!');
+          restartGame();
+        }, 300);
+      }
     }
-    cell.disabled = true;
   }
 
   function isMine(row, colum) {
