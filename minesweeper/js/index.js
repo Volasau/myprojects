@@ -110,7 +110,7 @@ function startGame(vertical, gorisontal, mines) {
   function writeNumber(row, colum) {
     let number = 0;
     for (let i = -1; i <= 1; i++) {
-      for (j = -1; j <= 1; j++) {
+      for (let j = -1; j <= 1; j++) {
         if (isMine(row + j, colum + i)) {
           number++;
         }
@@ -120,6 +120,7 @@ function startGame(vertical, gorisontal, mines) {
   }
 
   function open(row, colum) {
+    if (!isValid(row, colum)) return;
     const index = row * vertical + colum;
     const cell = cells[index];
     if (isMine(row, colum)) {
@@ -138,6 +139,7 @@ function startGame(vertical, gorisontal, mines) {
       });
       setTimeout(() => {
         alert('Game over. Try again');
+        restartGame();
       }, 300);
       return;
     } else {
@@ -149,7 +151,12 @@ function startGame(vertical, gorisontal, mines) {
   }
 
   function isMine(row, colum) {
+    if (!isValid(row, colum)) return false;
     const index = row * vertical + colum;
     return minesNow.includes(index);
+  }
+
+  function restartGame() {
+    startGame(vertical, gorisontal, mines);
   }
 }
