@@ -27,7 +27,8 @@ button {
 }
 
 .title {
-    font-size: 55px;
+    margin-top: 15px;
+    font-size: 15px;
     color: black;
 }
 
@@ -67,4 +68,29 @@ button {
 
 .five {
     color: darkmagenta
+}
+
+.menu-container {
+    margin-bottom: 10px;
+}
+
+.statistiks {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+span {
+    margin-right: 10px;
+}
+
+.timer,
+.step {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.input__mines {
+    margin-left: 20px;
+    width: 35px;
 }

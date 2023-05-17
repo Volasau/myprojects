@@ -6,62 +6,93 @@ let sizeMines = 23;
 const body = document.getElementsByTagName('body')[0];
 body.classList.add('body');
 
-(function createTitle() {
-  const nameGame = document.createElement('p');
-  nameGame.innerHTML = 'Mineswepers';
-  nameGame.classList.add('title');
-  document.body.appendChild(nameGame);
+const menuContainer = document.createElement('div');
+menuContainer.classList.add('menu-container');
+document.body.appendChild(menuContainer);
 
-  const menuGame = document.createElement('div');
-  menuGame.classList.add('menu__game');
+const menuTitle = document.createElement('p');
+menuTitle.innerHTML = 'Размер поля и количество мин:';
+menuTitle.classList.add('title');
+menuContainer.appendChild(menuTitle);
 
-  const easyBtn = document.createElement('button');
-  easyBtn.textContent = '10';
-  easyBtn.classList.add('button_game');
-  easyBtn.classList.add('active');
-  easyBtn.setAttribute('data-value', '10');
+const selectElement = document.createElement('select');
+selectElement.classList.add('select');
 
-  const mediumBtn = document.createElement('button');
-  mediumBtn.textContent = '15';
-  mediumBtn.classList.add('button_game');
-  mediumBtn.setAttribute('data-value', '15');
+const sizeArea = ['10', '15', '25'];
 
-  const hardBtn = document.createElement('button');
-  hardBtn.textContent = '25';
-  hardBtn.classList.add('button_game');
-  hardBtn.setAttribute('data-value', '25');
+sizeArea.forEach((element) => {
+  const sizeAreaElement = document.createElement('option');
+  sizeAreaElement.textContent = element;
+  selectElement.appendChild(sizeAreaElement);
+});
 
-  menuGame.appendChild(easyBtn);
-  menuGame.appendChild(mediumBtn);
-  menuGame.appendChild(hardBtn);
+selectElement.value = '10';
 
-  document.body.appendChild(menuGame);
+selectElement.addEventListener('change', (event) => {
+  const selectedValue = event.target.value;
+  vertical = parseInt(selectedValue);
+  gorisontal = vertical;
+  createTitle();
+  startGame(vertical, gorisontal, mines);
+});
 
-  const area = document.createElement('div');
-  area.classList.add('name');
-  area.style.display = 'grid';
-  area.style.gridTemplateColumns = `repeat(${vertical}, 25px)`;
-  document.body.appendChild(area);
+const minesInput = document.createElement('input');
+minesInput.classList.add('input__mines');
+minesInput.setAttribute('type', 'number');
+minesInput.setAttribute('min', '10');
+minesInput.setAttribute('max', '99');
+minesInput.setAttribute('value', '10');
+menuContainer.appendChild(minesInput);
 
-  const menuGameActive = document.querySelector('.menu__game');
+minesInput.addEventListener('change', (event) => {
+  const selectedValue = parseInt(event.target.value);
+  if (selectedValue > 0 && selectedValue <= 99) {
+    mines = selectedValue;
+    createTitle();
+    startGame(vertical, gorisontal, mines);
+  }
+});
 
-  menuGame.addEventListener('click', (event) => {
-    const buttons = menuGameActive.querySelectorAll('.button_game');
-    buttons.forEach((button) => {
-      if (button === event.target) {
-        if (!button.classList.contains('active')) {
-          button.classList.add('active');
-        }
-      } else {
-        button.classList.remove('active');
-      }
-    });
-  });
-})();
+menuContainer.appendChild(selectElement);
+menuContainer.appendChild(minesInput);
 
+const statistiks = document.createElement('div');
+statistiks.classList.add('statistiks');
+document.body.appendChild(statistiks);
+
+const timerSpan = document.createElement('span');
+timerSpan.textContent = 'Время:';
+statistiks.appendChild(timerSpan);
+
+const timerText = document.createElement('span');
+timerText.classList.add('timer');
+statistiks.appendChild(timerText);
+
+const stepSpan = document.createElement('span');
+stepSpan.textContent = 'Ходы:';
+statistiks.appendChild(stepSpan);
+
+const stepText = document.createElement('span');
+stepText.classList.add('step');
+statistiks.appendChild(stepText);
+createTitle();
 startGame(vertical, gorisontal, mines);
 
+function createTitle() {
+  const area = document.querySelector('.name');
+  if (area) {
+    document.body.removeChild(area);
+  }
+
+  const newArea = document.createElement('div');
+  newArea.classList.add('name');
+  newArea.style.display = 'grid';
+  newArea.style.gridTemplateColumns = `repeat(${vertical}, 25px)`;
+  document.body.appendChild(newArea);
+}
+
 function startGame(vertical, gorisontal, mines) {
+  stepText.textContent = 0;
   const place = document.querySelector('.name');
   const areaBtn = vertical * gorisontal;
   place.innerHTML = '<button></button>'.repeat(areaBtn);
@@ -85,6 +116,8 @@ function startGame(vertical, gorisontal, mines) {
 
   let isFirstClick = true;
   let minesNow = null;
+  let clickCount = 0;
+  const results = [];
 
   place.addEventListener('click', (event) => {
     event.preventDefault();
@@ -102,6 +135,8 @@ function startGame(vertical, gorisontal, mines) {
         .sort(() => Math.random() - 0.5)
         .splice(0, mines);
     }
+    clickCount++;
+    incrementMoveCount();
     open(row, colum);
   });
 
@@ -173,13 +208,16 @@ function startGame(vertical, gorisontal, mines) {
         }
         cell.disabled = true;
       }
+
       finish--;
 
       if (finish <= mines) {
-        const audio = new Audio('./assets/sound/ura.mp3');
+        const audio = new Audio('./assets/sound/youwin.mp3');
         audio.play();
         setTimeout(() => {
-          alert('You WIN!');
+          alert(
+            `Hooray! You found all mines in $[[]] seconds and ${clickCount} moves!`
+          );
           restartGame();
         }, 300);
       }
@@ -194,5 +232,12 @@ function startGame(vertical, gorisontal, mines) {
 
   function restartGame() {
     startGame(vertical, gorisontal, mines);
+  }
+
+  function incrementMoveCount() {
+    updateMovesValue();
+  }
+  function updateMovesValue() {
+    stepText.textContent = clickCount;
   }
 }
