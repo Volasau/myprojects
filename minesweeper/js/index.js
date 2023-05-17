@@ -72,6 +72,17 @@ const stepSpan = document.createElement('span');
 stepSpan.textContent = 'Ходы:';
 statistiks.appendChild(stepSpan);
 
+const res = document.createElement('button');
+res.classList.add('button__restat');
+res.textContent = 'Res';
+document.body.appendChild(res);
+/////////////////////////////////////////////
+const resBtn = document.querySelector('.button__restat');
+resBtn.addEventListener('click', () => {
+  createTitle();
+  startGame(vertical, gorisontal, mines);
+});
+
 const stepText = document.createElement('span');
 stepText.classList.add('step');
 statistiks.appendChild(stepText);

@@ -94,3 +94,12 @@ span {
     margin-left: 20px;
     width: 35px;
 }
+
+.button__restat {
+    width: 75px;
+    height: 30px;
+    border-radius: 15px;
+    border-color: rgb(233, 105, 105);
+    background-color: rgb(233, 105, 105);
+    margin-bottom: 10px;
+}
