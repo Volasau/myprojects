@@ -1,6 +1,6 @@
 let vertical = 10;
 let gorisontal = vertical;
-let mines = 5;
+let mines = 10;
 let sizeMines = 23;
 
 const body = document.getElementsByTagName('body')[0];
