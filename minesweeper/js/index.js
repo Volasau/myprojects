@@ -75,6 +75,7 @@ const res = document.createElement('button');
 res.classList.add('button__restat');
 res.textContent = 'Res';
 document.body.appendChild(res);
+
 /////////////////////////////////////////////
 const resBtn = document.querySelector('.button__restat');
 resBtn.addEventListener('click', () => {
@@ -85,6 +86,21 @@ resBtn.addEventListener('click', () => {
 const stepText = document.createElement('span');
 stepText.classList.add('step');
 statistiks.appendChild(stepText);
+
+const flagsSpan = document.createElement('span');
+flagsSpan.textContent = 'Флаги:';
+statistiks.appendChild(flagsSpan);
+const flagsText = document.createElement('span');
+flagsText.classList.add('flags');
+statistiks.appendChild(flagsText);
+
+const minesSpan = document.createElement('span');
+minesSpan.textContent = 'Мины:';
+statistiks.appendChild(minesSpan);
+const minesText = document.createElement('span');
+minesText.classList.add('flags');
+statistiks.appendChild(minesText);
+
 createTitle();
 startGame(vertical, gorisontal, mines);
 
@@ -118,6 +134,8 @@ window.addEventListener('resize', createTitle);
 createTitle();
 
 function startGame(vertical, gorisontal, mines) {
+  minesText.textContent = mines;
+  flagsText.textContent = 0;
   stepText.textContent = 0;
   const place = document.querySelector('.name');
   const areaBtn = vertical * gorisontal;
@@ -132,10 +150,14 @@ function startGame(vertical, gorisontal, mines) {
       event.preventDefault();
       if (button.innerHTML === '') {
         button.innerHTML = '<img src="./assets/img/flag.png" width="16">';
+        flagsCount++;
+        updateFlagsCount();
         const audio = new Audio('./assets/sound/chetkiy.mp3');
         audio.play();
       } else {
         button.innerHTML = '';
+        flagsCount--;
+        updateFlagsCount();
       }
     });
   });
@@ -143,6 +165,7 @@ function startGame(vertical, gorisontal, mines) {
   let isFirstClick = true;
   let minesNow = null;
   let clickCount = 0;
+  let flagsCount = 0;
   const results = [];
 
   place.addEventListener('click', (event) => {
@@ -265,5 +288,15 @@ function startGame(vertical, gorisontal, mines) {
   }
   function updateMovesValue() {
     stepText.textContent = clickCount;
+  }
+
+  function updateFlagsCount() {
+    flagsText.textContent = flagsCount;
+    minesText.textContent = mines - flagsCount;
+    if (flagsCount > mines) {
+      alert(
+        `Вы установили ${flagsCount} фагов, количество мин на поле ${mines}`
+      );
+    }
   }
 }
