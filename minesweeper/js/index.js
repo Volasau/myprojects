@@ -1,7 +1,6 @@
 let vertical = 10;
 let gorisontal = vertical;
 let mines = 10;
-let sizeMines = 23;
 
 const body = document.getElementsByTagName('body')[0];
 body.classList.add('body');
@@ -94,13 +93,29 @@ function createTitle() {
   if (area) {
     document.body.removeChild(area);
   }
+  const screenWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
-  const newArea = document.createElement('div');
-  newArea.classList.add('name');
-  newArea.style.display = 'grid';
-  newArea.style.gridTemplateColumns = `repeat(${vertical}, 25px)`;
-  document.body.appendChild(newArea);
+  if (screenWidth <= 700) {
+    const newArea = document.createElement('div');
+    newArea.classList.add('name');
+    newArea.style.display = 'grid';
+    newArea.style.gridTemplateColumns = `repeat(${vertical}, 15px)`;
+    document.body.appendChild(newArea);
+  } else {
+    const newArea = document.createElement('div');
+    newArea.classList.add('name');
+    newArea.style.display = 'grid';
+    newArea.style.gridTemplateColumns = `repeat(${vertical}, 25px)`;
+    document.body.appendChild(newArea);
+  }
+  startGame(vertical, gorisontal, mines);
 }
+
+window.addEventListener('resize', createTitle);
+createTitle();
 
 function startGame(vertical, gorisontal, mines) {
   stepText.textContent = 0;
@@ -176,12 +191,12 @@ function startGame(vertical, gorisontal, mines) {
     if (isMine(row, colum)) {
       const audio = new Audio('./assets/sound/notwin.mp3');
       audio.play();
-      cell.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+      cell.innerHTML = `<img src="./assets/img/mine.png" width=23>`;
       cells.forEach((button, index) => {
         const colum = index % vertical;
         const row = Math.floor(index / vertical);
         if (isMine(row, colum)) {
-          button.innerHTML = `<img src="./assets/img/mine.png" width=${sizeMines}>`;
+          button.innerHTML = `<img src="./assets/img/mine.png" width=23>`;
         } else {
           button.innerHTML = writeNumber(row, colum);
         }
