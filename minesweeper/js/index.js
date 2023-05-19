@@ -1,7 +1,13 @@
 let vertical = 10;
 let gorisontal = vertical;
 let mines = 10;
-const results = [];
+let results = JSON.parse(localStorage.getItem('gameResults')) || [];
+
+function saveResults() {
+  localStorage.setItem('gameResults', JSON.stringify(results));
+}
+
+window.addEventListener('beforeunload', saveResults);
 
 function saveGameSettings(vertical, mines) {
   const gameSettings = {
@@ -290,7 +296,7 @@ function startGame(vertical, gorisontal, mines) {
         audio.play();
         setTimeout(() => {
           alert(
-            `Hooray! You found all mines in $[[]] seconds and ${clickCount} moves!`
+            `Hooray! You found all mines in $[[]] seconds and ${clickCount} steps!`
           );
           saveResult(clickCount);
           restartGame();
