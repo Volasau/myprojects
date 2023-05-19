@@ -104,6 +104,26 @@ const res = document.createElement('button');
 res.classList.add('button__restat');
 res.textContent = 'Res';
 document.body.appendChild(res);
+//////////////////////////////////////////////
+const result = document.createElement('button');
+result.classList.add('button__result');
+result.textContent = 'Result';
+document.body.appendChild(result);
+
+const resaultArray = document.createElement('div');
+resaultArray.classList.add('results-container');
+document.body.appendChild(resaultArray);
+
+function updateResults() {
+  const resultsContainer = document.querySelector('.results-container');
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  for (let i = 0; i < results.length; i++) {
+    const resultText = document.createElement('p');
+    resultText.textContent = results[i];
+    resultsContainer.appendChild(resultText);
+  }
+}
 
 /////////////////////////////////////////////
 const resBtn = document.querySelector('.button__restat');
@@ -134,6 +154,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadGameSettings();
   createTitle();
   startGame(vertical, gorisontal, mines);
+  updateResults();
 });
 
 function createTitle() {
@@ -333,14 +354,28 @@ function startGame(vertical, gorisontal, mines) {
   }
 
   function saveResult(clickCount) {
-    const result = `You won in ${clickCount} steps`;
+    const now = new Date();
+    const currentDateTime = now.toLocaleString();
+    const result = `${currentDateTime} You won in ${clickCount} steps`;
     if (results.length === 10) {
       results.shift();
       results.push(result);
     } else {
       results.push(result);
     }
+    updateResults();
   }
 
-  console.log(results);
+  /////////////////////////////////////////////////////////////////
+  const resultBtn = document.querySelector('.button__result');
+  const resultTable = document.querySelector('.results-container');
+  resultBtn.addEventListener('click', () => {
+    if (resultTable.classList.contains('block')) {
+      resultTable.classList.remove('block');
+    } else {
+      resultTable.classList.add('block');
+    }
+  });
+
+  //   console.log(results);
 }
