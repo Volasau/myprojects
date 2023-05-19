@@ -1,6 +1,27 @@
 let vertical = 10;
 let gorisontal = vertical;
 let mines = 10;
+const results = [];
+
+function saveGameSettings(vertical, mines) {
+  const gameSettings = {
+    vertical: vertical,
+    mines: mines,
+  };
+  localStorage.setItem('gameSettings', JSON.stringify(gameSettings));
+}
+
+function loadGameSettings() {
+  const savedSettings = localStorage.getItem('gameSettings');
+  if (savedSettings) {
+    const gameSettings = JSON.parse(savedSettings);
+    vertical = gameSettings.vertical;
+    gorisontal = vertical;
+    mines = gameSettings.mines;
+    selectElement.value = vertical.toString();
+    minesInput.value = mines.toString();
+  }
+}
 
 const body = document.getElementsByTagName('body')[0];
 body.classList.add('body');
@@ -31,6 +52,7 @@ selectElement.addEventListener('change', (event) => {
   const selectedValue = event.target.value;
   vertical = parseInt(selectedValue);
   gorisontal = vertical;
+  saveGameSettings(vertical, mines);
   createTitle();
   startGame(vertical, gorisontal, mines);
 });
@@ -47,6 +69,7 @@ minesInput.addEventListener('change', (event) => {
   const selectedValue = parseInt(event.target.value);
   if (selectedValue > 0 && selectedValue <= 99) {
     mines = selectedValue;
+    saveGameSettings(vertical, mines);
     createTitle();
     startGame(vertical, gorisontal, mines);
   }
@@ -101,8 +124,11 @@ const minesText = document.createElement('span');
 minesText.classList.add('flags');
 statistiks.appendChild(minesText);
 
-createTitle();
-startGame(vertical, gorisontal, mines);
+window.addEventListener('DOMContentLoaded', () => {
+  loadGameSettings();
+  createTitle();
+  startGame(vertical, gorisontal, mines);
+});
 
 function createTitle() {
   const area = document.querySelector('.name');
@@ -166,7 +192,6 @@ function startGame(vertical, gorisontal, mines) {
   let minesNow = null;
   let clickCount = 0;
   let flagsCount = 0;
-  const results = [];
 
   place.addEventListener('click', (event) => {
     event.preventDefault();
@@ -267,6 +292,7 @@ function startGame(vertical, gorisontal, mines) {
           alert(
             `Hooray! You found all mines in $[[]] seconds and ${clickCount} moves!`
           );
+          saveResult(clickCount);
           restartGame();
         }, 300);
       }
@@ -293,10 +319,22 @@ function startGame(vertical, gorisontal, mines) {
   function updateFlagsCount() {
     flagsText.textContent = flagsCount;
     minesText.textContent = mines - flagsCount;
-    if (flagsCount > mines) {
+    if (flagsCount >= mines) {
       alert(
-        `Вы установили ${flagsCount} фагов, количество мин на поле ${mines}`
+        `Обратите внимание вы ставите ${flagsCount} флаг,\n количество мин на поле ${mines}`
       );
     }
   }
+
+  function saveResult(clickCount) {
+    const result = `You won in ${clickCount} steps`;
+    if (results.length === 10) {
+      results.shift();
+      results.push(result);
+    } else {
+      results.push(result);
+    }
+  }
+
+  console.log(results);
 }
