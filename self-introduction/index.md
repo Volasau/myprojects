@@ -1,4 +1,4 @@
-[My video]: https://youtu.be/HZsPXak0vIA
+[My video](https://youtu.be/HZsPXak0vIA)
 
 Hi.
 I am glad you are watching the video. That video is about myself.
