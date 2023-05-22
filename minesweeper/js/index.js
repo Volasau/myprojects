@@ -116,7 +116,7 @@ document.body.appendChild(resaultArray);
 
 function updateResults() {
   const resultsContainer = document.querySelector('.results-container');
-  resultsContainer.innerHTML = ''; // Clear previous results
+  resultsContainer.innerHTML = '';
 
   for (let i = 0; i < results.length; i++) {
     const resultText = document.createElement('p');
@@ -128,6 +128,8 @@ function updateResults() {
 /////////////////////////////////////////////
 const resBtn = document.querySelector('.button__restat');
 resBtn.addEventListener('click', () => {
+  stopTime();
+  timerStart = false;
   createTitle();
   startGame(vertical, gorisontal, mines);
 });
@@ -180,6 +182,7 @@ function createTitle() {
     newArea.style.gridTemplateColumns = `repeat(${vertical}, 25px)`;
     document.body.appendChild(newArea);
   }
+
   startGame(vertical, gorisontal, mines);
 }
 
@@ -230,6 +233,10 @@ function startGame(vertical, gorisontal, mines) {
     const row = Math.floor(index / vertical);
 
     if (isFirstClick) {
+      if (!timerStart) {
+        startTime();
+        timerStart = true;
+      }
       isFirstClick = false;
       minesNow = [...Array(areaBtn).keys()]
         .filter((i) => i !== index)
@@ -279,6 +286,8 @@ function startGame(vertical, gorisontal, mines) {
       });
       setTimeout(() => {
         alert('Game over. Try again');
+        stopTime();
+        timerStart = false;
         restartGame();
       }, 300);
       return;
@@ -317,8 +326,10 @@ function startGame(vertical, gorisontal, mines) {
         audio.play();
         setTimeout(() => {
           alert(
-            `Hooray! You found all mines in $[[]] seconds and ${clickCount} steps!`
+            `Hooray! You found all mines in ${timeNow} time and ${clickCount} moves!`
           );
+          stopTime();
+          timerStart = false;
           saveResult(clickCount);
           restartGame();
         }, 300);
@@ -354,9 +365,7 @@ function startGame(vertical, gorisontal, mines) {
   }
 
   function saveResult(clickCount) {
-    const now = new Date();
-    const currentDateTime = now.toLocaleString();
-    const result = `${currentDateTime} You won in ${clickCount} steps`;
+    const result = `You won in ${timeNow} time and ${clickCount} steps`;
     if (results.length === 10) {
       results.shift();
       results.push(result);
@@ -365,17 +374,44 @@ function startGame(vertical, gorisontal, mines) {
     }
     updateResults();
   }
+}
 
-  /////////////////////////////////////////////////////////////////
-  const resultBtn = document.querySelector('.button__result');
-  const resultTable = document.querySelector('.results-container');
-  resultBtn.addEventListener('click', () => {
-    if (resultTable.classList.contains('block')) {
-      resultTable.classList.remove('block');
-    } else {
-      resultTable.classList.add('block');
+/////////////////////////////////////////////////////////////////////////
+const resultBtn = document.querySelector('.button__result');
+const resultTable = document.querySelector('.results-container');
+resultTable.classList.remove('block');
+resultBtn.addEventListener('click', () => {
+  if (resultTable.classList.contains('block')) {
+    resultTable.classList.remove('block');
+  } else {
+    resultTable.classList.add('block');
+  }
+});
+
+let seconds = 0;
+let minutes = 0;
+let timer;
+let timeNow;
+let timerStart = false;
+timerText.innerHTML = '00:00';
+function startTime() {
+  timer = setInterval(() => {
+    seconds++;
+    if (seconds == 60) {
+      seconds = 0;
+      minutes++;
     }
-  });
+    timeNow =
+      (minutes > 9 ? minutes : '0' + minutes) +
+      ':' +
+      (seconds > 9 ? seconds : '0' + seconds);
+    timerText.innerHTML = timeNow;
+  }, 1000);
+}
 
-  //   console.log(results);
+function stopTime() {
+  clearInterval(timer);
+  timerText.innerHTML = '00:00';
+  timeNow;
+  seconds = 0;
 }
