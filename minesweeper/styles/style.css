@@ -1,0 +1,195 @@
+body,
+p {
+    margin: 0;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 25px;
+    font-size: 25px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(250, 240, 221);
+    margin-bottom: 30px;
+}
+
+.button {
+    text-align: center;
+    height: 40px;
+    font-size: 25px;
+}
+
+.title {
+    margin-top: 15px;
+    font-size: 35px;
+    color: black;
+}
+
+.menu__game {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    width: 30%;
+    padding: 10px;
+}
+
+.button_game {
+    height: 30px;
+    font-size: 20px;
+}
+
+.one {
+    color: green
+}
+
+.two {
+    color: blue
+}
+
+.three {
+    color: coral
+}
+
+.four {
+    color: crimson
+}
+
+.five {
+    color: darkmagenta
+}
+
+.menu-container {
+    margin-bottom: 10px;
+}
+
+.statistiks {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.timer,
+.step,
+.flags {
+    font-weight: bold;
+    margin: 0 10px 0 5px;
+
+}
+
+.input__mines {
+    margin-left: 70px;
+    width: 55px;
+    font-size: 25px;
+}
+
+.select {
+    margin-right: 70px;
+    width: 55px;
+    font-size: 25px;
+}
+
+.step,
+.flags {
+    font-size: 20px;
+}
+
+.button__restat {
+    width: 75px;
+    height: 30px;
+    border-radius: 15px;
+    border-color: rgb(233, 105, 105);
+    background-color: rgb(233, 105, 105);
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.button__result {
+    width: 75px;
+    height: 30px;
+    border-radius: 15px;
+    border-color: rgb(163, 233, 105);
+    background-color: rgb(180, 233, 105);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.button__restat:hover {
+    color: white;
+    transition: all 0.3s;
+}
+
+.button__restat:active {
+    border-color: rgb(248, 19, 19);
+    background-color: rgb(248, 19, 19);
+    color: white
+}
+
+.results-container {
+    display: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 5px 0 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.results-container p {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.block {
+    display: block;
+}
+
+@media screen and (max-width:700px) {
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 15px;
+        font-size: 10px;
+    }
+
+    img {
+        width: 10px;
+    }
+
+    .title {
+        font-size: 15px;
+    }
+
+    .input__mines {
+        margin-left: 20px;
+        width: 35px;
+        font-size: 15px;
+    }
+
+    .select {
+        margin-right: 40px;
+        width: 40px;
+        height: 22px;
+        font-size: 15px;
+    }
+
+    .step,
+    .flags {
+        font-size: 17px;
+    }
+
+    .results-container p {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+}
