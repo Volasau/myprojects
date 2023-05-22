@@ -102,7 +102,7 @@ statistiks.appendChild(stepSpan);
 
 const res = document.createElement('button');
 res.classList.add('button__restat');
-res.textContent = 'Res';
+res.textContent = 'New';
 document.body.appendChild(res);
 //////////////////////////////////////////////
 const result = document.createElement('button');
