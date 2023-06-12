@@ -14,6 +14,10 @@ const baseConfig = {
                 use: ['style-loader', 'css-loader'],
             },
             { test: /\.ts$/i, use: 'ts-loader' },
+            {
+                test: /\.html$/i,
+                use: 'html-loader',
+            },
         ],
     },
     resolve: {
