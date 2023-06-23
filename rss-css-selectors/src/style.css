@@ -1,0 +1,189 @@
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(231, 236, 246);
+}
+
+.wrapper,
+.footer {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    color: rgb(13, 5, 235);
+}
+
+.container__game {
+    display: flex;
+    width: 100%;
+}
+
+/*//////////////////////////BLOCK left///////////////////*/
+.block__left {
+    width: 75%;
+    text-align: center;
+}
+
+.name__tasks {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+    margin: 0;
+    font-weight: 400;
+    text-align: center;
+    padding: 20px;
+}
+
+.table__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 5% 0;
+    perspective: 500px;
+}
+
+.table__task {
+    width: 70%;
+    height: 180px;
+    transform: rotateX(30deg);
+    background-color: rgb(252, 252, 149);
+    transform-origin: bottom;
+    box-shadow: 0px 40px 30px #00000075;
+}
+
+.table__task-front {
+    width: 70%;
+    height: 20px;
+    background-color: rgb(218, 218, 109);
+    transform: rotateX(330deg);
+    transform-origin: top;
+}
+
+.place__game * {
+    font-size: 14px;
+    line-height: 150%;
+    padding: 0;
+    margin: 0;
+}
+
+.place__game {
+    display: flex;
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    border: solid 5px rgba(13, 5, 235, 0.6);
+    border-radius: 3px;
+    max-width: 800px;
+}
+
+.place__css {
+    width: 50%;
+    float: left;
+}
+
+.place__html {
+    width: 50%;
+    float: right;
+}
+
+.place__header {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: rgb(127, 203, 238);
+}
+
+.place__name-header {
+    float: left;
+    padding-left: 25px;
+}
+
+.place__name-title {
+    float: right;
+    opacity: .5;
+}
+
+.place__input {
+    position: relative;
+    padding: 0px 10px 0px 46px;
+    min-height: 420px;
+    background-color: #ffffff75;
+}
+
+.number__line {
+    position: absolute;
+    left: 0;
+    padding: 0 8px 0 8px;
+    background-color: rgb(127, 203, 238);
+    text-align: right;
+}
+
+.solution {
+    width: 80%;
+    font-family: menlo, monospace;
+    color: #333;
+    border: none;
+    background: rgba(226, 126, 126, 0.5);
+    animation: input 2s infinite;
+}
+
+@keyframes input {
+    50% {
+        background: none;
+    }
+}
+
+.solution:focus {
+    outline: none;
+    background-color: #fff;
+    animation: none
+}
+
+/*///////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////BLOCK right/////////////////////*/
+.block__right {
+    width: 25%;
+    background-color: #ffffff75;
+    text-align: left;
+}
+
+.title__right {
+    color: rgba(0, 0, 0, 0.3);
+    padding-left: 20px;
+}
+
+/*///////////////////////////////////////////////////////////*/
+
+
+/*//////////////////FOOTER /////////////*/
+.footer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.footter__container {
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+}
+
+.rss-logo {
+    width: 70px;
+}
+
+.github-link {
+    /* margin-right: 5%; */
+    color: rgb(29, 15, 129);
+}
+
+/*////////////////////////////////////////////////*/
