@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rss-css-selectors</title>
+    <title>rss-css-selectors</title>
     <link rel="icon" href="<%= require('./src/assets/klever.png') %>" type="image/png">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -18,7 +18,9 @@
             <div class="block__left">
                 <h2 class="name__tasks">Tasks 1</h2>
                 <div class="table__container">
-                    <div class="table__task"></div>
+                    <div class="table__task">
+
+                    </div>
                     <div class="table__task-front"></div>
                 </div>
                 <div class="place__game">
@@ -32,7 +34,7 @@
                                 1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>
                             </div>
                             <input id="solution" class="solution" type="text" placeholder="Type in a CSS selector">
-                            <button for="solution" class="solution__button">Enter</button>
+                            <button id="submitButton" for="solution" class="solution__button">Enter</button>
 
                         </div>
                     </div>
@@ -44,6 +46,9 @@
                         <div class="place__input">
                             <div class="number__line">
                                 1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>
+                            </div>
+                            <div class="tags-task">
+
                             </div>
                         </div>
                     </div>
