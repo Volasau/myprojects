@@ -1,5 +1,3 @@
-/* @import '~highlight.js/styles/default.css'; */
-
 a {
     color: inherit;
     text-decoration: none;
@@ -36,7 +34,7 @@ body {
 }
 
 .name__tasks {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.5);
     font-size: 35px;
     margin: 0;
     font-weight: 400;
@@ -163,9 +161,16 @@ body {
     text-align: left;
 }
 
-.title__right {
-    color: rgba(0, 0, 0, 0.3);
-    padding-left: 20px;
+.title__right,
+.text__title,
+.display__help {
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0 10px 0 20px;
+}
+
+.selector__title {
+    font-size: 15px;
+    margin-top: 0;
 }
 
 /*///////////////////////////////////////////////////////////*/
@@ -212,12 +217,25 @@ plate {
     border-radius: 100px;
 }
 
-.plate {
+.dance {
     transform-origin: bottom;
     animation: pulse 1s infinite;
     animation-delay: 0s, .5s;
 }
 
+bento:hover,
+plate:hover {
+    border: rgb(127, 203, 238)
+}
+
+bento {
+    width: 100px;
+    height: 100px;
+    background: brown;
+    position: relative;
+    border: solid 3px #711c12;
+    border-width: 20px 2px;
+}
 
 @keyframes pulse {
     0% {
@@ -290,4 +308,26 @@ plate {
         transform: translate(0, -100vh);
         opacity: 0;
     }
+}
+
+
+.tag__text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    z-index: 9999;
+}
+
+
+
+#fancy:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: calc(50% - 47px);
+    top: calc(50% - 44px);
+    height: 68px;
+    width: 74px;
+    border-radius: 60px;
+    border: solid 10px #009ff2;
+    opacity: .4;
 }

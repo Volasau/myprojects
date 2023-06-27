@@ -1,22 +1,25 @@
 // import hljs from 'highlight.js/lib/common';
 import { endTask, shakeBlock } from './functions';
 
-export function setupTask1() {
+export function setupTask2() {
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
-        Task1.textContent = 'Select the plates';
+        Task1.textContent = 'Select the bento boxes';
     }
 
-    const plate1 = document.createElement('plate');
-    plate1.classList.add('dance');
+    const bento1 = document.createElement('bento');
+    bento1.classList.add('dance');
 
     const plate2 = document.createElement('plate');
-    plate2.classList.add('dance');
+
+    const bento2 = document.createElement('bento');
+    bento2.classList.add('dance');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(plate1);
+        tableTask.appendChild(bento1);
         tableTask.appendChild(plate2);
+        tableTask.appendChild(bento2);
     }
 
     const elem = document.querySelector('.table__task');
@@ -36,7 +39,7 @@ export function setupTask1() {
     //////////////////////BLOCK RIGHT///////////////////////
     const level = document.querySelector('.number__level');
     if (level) {
-        level.textContent = ' 1';
+        level.textContent = ' 2';
     }
 
     const selectorTitle = document.querySelector('.selector__title');
@@ -59,7 +62,7 @@ export function setupTask1() {
     }
 }
 
-const answerOne = 'plate';
+const answerOne = 'bento';
 
 document.addEventListener('DOMContentLoaded', function () {
     const solutionInput = document.querySelector('.solution') as HTMLInputElement;
