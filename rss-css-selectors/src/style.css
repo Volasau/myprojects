@@ -173,6 +173,24 @@ body {
     margin-top: 0;
 }
 
+.hint,
+.exemples,
+.exemple {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+.exemples {
+    padding-bottom: 8px;
+    border-bottom: solid 1px rgba(34, 30, 30, 0.499);
+}
+
+.exemple {
+    padding-top: 6px;
+}
+
+
+
 /*///////////////////////////////////////////////////////////*/
 
 
@@ -225,7 +243,14 @@ plate {
 
 bento:hover,
 plate:hover {
-    border: rgb(127, 203, 238)
+
+    /* border-width: 15px 5px; */
+    border-color: rgb(243, 72, 200);
+}
+
+apple:hover {
+    border-color: rgb(30, 108, 33);
+    transform: scale(1);
 }
 
 bento {
@@ -234,7 +259,7 @@ bento {
     background: brown;
     position: relative;
     border: solid 3px #711c12;
-    border-width: 20px 2px;
+    border-width: 10px 0px;
 }
 
 @keyframes pulse {
@@ -312,9 +337,15 @@ bento {
 
 
 .tag__text {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 10px;
-    z-index: 9999;
+    display: none;
+    position: absolute;
+    top: 8%;
+    left: 28%;
+    padding: 10px 15px;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid #009ff2;
+    z-index: 1;
 }
 
 
@@ -323,11 +354,81 @@ bento {
     content: "";
     display: block;
     position: absolute;
-    left: calc(50% - 47px);
-    top: calc(50% - 44px);
+    left: calc(50% - 45px);
+    top: calc(50% - 41px);
     height: 68px;
     width: 74px;
     border-radius: 60px;
-    border: solid 10px #009ff2;
+    border: dashed 8px red;
     opacity: .4;
+}
+
+
+orange,
+apple {
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 2px 4px 15px 4px;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin: 20px 10px;
+}
+
+
+apple {
+    background: #97ef2b;
+    border-color: #64b927;
+}
+
+
+orange,
+apple,
+pickle {
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
+    display: inline-block;
+    margin: 10px 10px;
+    height: 50px;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    .place__input {
+        min-height: 300px;
+    }
+
+    .name__tasks {
+        font-size: 25px;
+    }
+
+    .place__game * {
+        font-size: 10px;
+    }
+
+
+    h2,
+    h3,
+    h4 {
+        font-size: 1rem;
+    }
+
+    .selector__title {
+        font-size: 10px;
+        margin-top: 0;
+    }
+
+    .hint,
+    .exemples,
+    .exemple {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 10px;
+    }
+
+    .title__right {
+        padding: 0 5px 0 10px;
+    }
 }

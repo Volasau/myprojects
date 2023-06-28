@@ -1,25 +1,25 @@
-// import hljs from 'highlight.js/lib/common';
 import { endTask, shakeBlock } from './functions';
 
-export function setupTask2() {
+export function setupTask4() {
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
         Task1.textContent = 'Select the bento boxes';
     }
 
-    const bento1 = document.createElement('bento');
-    bento1.classList.add('dance');
+    const bento = document.createElement('bento');
 
-    const plate2 = document.createElement('plate');
+    const plate = document.createElement('plate');
 
-    const bento2 = document.createElement('bento');
-    bento2.classList.add('dance');
+    const apple1 = document.createElement('apple');
+    apple1.classList.add('dance');
+    const apple = document.createElement('apple');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(bento1);
-        tableTask.appendChild(plate2);
-        tableTask.appendChild(bento2);
+        tableTask.appendChild(bento);
+        tableTask.appendChild(plate);
+        plate.appendChild(apple1);
+        tableTask.appendChild(apple);
     }
 
     const elem = document.querySelector('.table__task');
@@ -39,39 +39,39 @@ export function setupTask2() {
     //////////////////////BLOCK RIGHT///////////////////////
     const level = document.querySelector('.number__level');
     if (level) {
-        level.textContent = ' 2';
+        level.textContent = ' 4';
     }
 
     const selectorName = document.querySelector('.selector__name');
     if (selectorName) {
-        selectorName.textContent = 'Type Selector';
+        selectorName.textContent = 'Descendant Selector';
     }
 
     const selectorTitle = document.querySelector('.selector__title');
     if (selectorTitle) {
-        selectorTitle.textContent = 'Select elements by their type';
+        selectorTitle.textContent = 'Select an element inside another element';
     }
 
     const syntax = document.querySelector('.syntax');
     if (syntax) {
-        syntax.textContent = 'A';
+        syntax.textContent = 'A  B';
     }
     const hint = document.querySelector('.hint');
     if (hint) {
         hint.textContent =
-            'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.';
+            'Selects all B inside of A. B is called a descendant because it is inside of another element.';
     }
     const exemples = document.querySelector('.exemples');
     if (exemples) {
-        exemples.textContent = 'div selects all div elements.';
+        exemples.textContent = 'p  strong selects all strong elements that are inside of any p';
     }
 
     const exemple = document.querySelector('.exemple');
     if (exemple) {
-        exemple.textContent = 'p selects all p elements.';
+        exemple.textContent = '#fancy  span selects any span elements that are inside of the element with id="fancy"';
     }
 
-    const answerTwo = 'bento';
+    const answerFour = 'plate apple';
 
     document.addEventListener('DOMContentLoaded', function () {
         const solutionInput = document.querySelector('.solution') as HTMLInputElement;
@@ -85,7 +85,7 @@ export function setupTask2() {
                 const userInput = solutionInput.value;
                 console.log(userInput);
 
-                if (userInput === answerTwo) {
+                if (userInput === answerFour) {
                     endTask();
                 } else {
                     shakeBlock(placeGame);
@@ -99,7 +99,7 @@ export function setupTask2() {
                     const userInput = solutionInput.value;
                     console.log(userInput);
 
-                    if (userInput === answerTwo) {
+                    if (userInput === answerFour) {
                         endTask();
                     } else {
                         shakeBlock(placeGame);

@@ -1,23 +1,22 @@
-// import hljs from 'highlight.js/lib/common';
 import { endTask, shakeBlock } from './functions';
 
-export function setupTask2() {
+export function setupTask3() {
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
         Task1.textContent = 'Select the bento boxes';
     }
 
-    const bento1 = document.createElement('bento');
-    bento1.classList.add('dance');
+    const plateBlu = document.createElement('plate');
+    plateBlu.id = 'fancy';
+    plateBlu.classList.add('dance');
 
     const plate2 = document.createElement('plate');
 
     const bento2 = document.createElement('bento');
-    bento2.classList.add('dance');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(bento1);
+        tableTask.appendChild(plateBlu);
         tableTask.appendChild(plate2);
         tableTask.appendChild(bento2);
     }
@@ -39,75 +38,75 @@ export function setupTask2() {
     //////////////////////BLOCK RIGHT///////////////////////
     const level = document.querySelector('.number__level');
     if (level) {
-        level.textContent = ' 2';
+        level.textContent = ' 3';
     }
 
     const selectorName = document.querySelector('.selector__name');
     if (selectorName) {
-        selectorName.textContent = 'Type Selector';
+        selectorName.textContent = 'ID Selector';
     }
 
     const selectorTitle = document.querySelector('.selector__title');
     if (selectorTitle) {
-        selectorTitle.textContent = 'Select elements by their type';
+        selectorTitle.textContent = 'Select elements with an ID';
     }
 
     const syntax = document.querySelector('.syntax');
     if (syntax) {
-        syntax.textContent = 'A';
+        syntax.textContent = '#id';
     }
     const hint = document.querySelector('.hint');
     if (hint) {
         hint.textContent =
-            'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.';
+            'Selects the element with a specific id. You can also combine the ID selector with the type selector.';
     }
     const exemples = document.querySelector('.exemples');
     if (exemples) {
-        exemples.textContent = 'div selects all div elements.';
+        exemples.textContent = '#cool selects any element with id="cool"';
     }
 
     const exemple = document.querySelector('.exemple');
     if (exemple) {
-        exemple.textContent = 'p selects all p elements.';
+        exemple.textContent = 'ul#long selects ul id="long"';
     }
+}
 
-    const answerTwo = 'bento';
+const answerFhree = '#fancy';
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const solutionInput = document.querySelector('.solution') as HTMLInputElement;
-        const submitButton = document.querySelector('.solution__button');
-        const placeGame = document.querySelector('.place__game') as HTMLDivElement;
+document.addEventListener('DOMContentLoaded', function () {
+    const solutionInput = document.querySelector('.solution') as HTMLInputElement;
+    const submitButton = document.querySelector('.solution__button');
+    const placeGame = document.querySelector('.place__game') as HTMLDivElement;
 
-        if (solutionInput && submitButton && placeGame) {
-            submitButton.addEventListener('click', function (event) {
+    if (solutionInput && submitButton && placeGame) {
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const userInput = solutionInput.value;
+            console.log(userInput);
+
+            if (userInput === answerFhree) {
+                endTask();
+            } else {
+                shakeBlock(placeGame);
+            }
+        });
+
+        solutionInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
                 event.preventDefault();
 
                 const userInput = solutionInput.value;
                 console.log(userInput);
 
-                if (userInput === answerTwo) {
+                if (userInput === answerFhree) {
                     endTask();
                 } else {
                     shakeBlock(placeGame);
                 }
-            });
-
-            solutionInput.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-
-                    const userInput = solutionInput.value;
-                    console.log(userInput);
-
-                    if (userInput === answerTwo) {
-                        endTask();
-                    } else {
-                        shakeBlock(placeGame);
-                    }
-                }
-            });
-        } else {
-            console.log('Элемент solutionInput, submitButton или placeGame не найден.');
-        }
-    });
-}
+            }
+        });
+    } else {
+        console.log('Элемент solutionInput, submitButton или placeGame не найден.');
+    }
+});
