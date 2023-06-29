@@ -161,7 +161,31 @@ body {
     text-align: left;
 }
 
-.title__right,
+.level__container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 10px;
+}
+
+.level__btn {
+    width: 20px;
+    height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid #009ff2;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    margin: 3px 3px 0 0;
+}
+
+.level__btn:hover {
+    background-color: #009ff2
+}
+
+.level__btn-select .title__right {
+    background-color: #009ff2
+}
+
 .text__title,
 .display__help {
     color: rgba(0, 0, 0, 0.5);
@@ -253,6 +277,16 @@ apple:hover {
     transform: scale(1);
 }
 
+orange:hover {
+    border-color: rgb(247, 191, 9);
+    transform: scale(1);
+}
+
+pickle:hover {
+    border-color: rgb(116, 247, 9);
+    transform: scale(1);
+}
+
 bento {
     width: 100px;
     height: 100px;
@@ -260,6 +294,15 @@ bento {
     position: relative;
     border: solid 3px #711c12;
     border-width: 10px 0px;
+}
+
+pickle {
+    width: 25px;
+    background: #179837;
+    border-radius: 30px;
+    display: inline-block;
+    border: solid 2px #025a18;
+    border-width: 2px 2px 9px 2px;
 }
 
 @keyframes pulse {
@@ -375,6 +418,10 @@ apple {
     margin: 20px 10px;
 }
 
+orange {
+    background: #f4f80f;
+    border-color: #f4f80f;
+}
 
 apple {
     background: #97ef2b;
