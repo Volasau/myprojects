@@ -229,6 +229,23 @@ export function resultTask(answer: string, levelNumber: number) {
     }
 }
 
+//////////////////////////////////////////////////////////RESTART
+
+function restartTasks() {
+    for (let i = 0; i < completedLevels.length; i++) {
+        completedLevels[i] = false;
+    }
+
+    const levelBtns = document.querySelectorAll('.level__btn');
+    levelBtns.forEach((btn) => {
+        btn.classList.remove('level__win');
+    });
+}
+const restartButton = document.querySelector('.restart__btn');
+if (restartButton) {
+    restartButton.addEventListener('click', restartTasks);
+}
+
 /////////////////////////////////////////////////// ТРЯСКА ПРИ НЕ ПРАВЕЛЬНОМ ОТВЕТЕ
 export function shakeBlock(element: HTMLElement) {
     element.classList.add('shake-animation');
