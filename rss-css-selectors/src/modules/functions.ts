@@ -254,3 +254,69 @@ export function clearTask() {
         exemple.textContent = '';
     }
 }
+
+//////////////////////////////////////// ПРАВЫЙ БЛОК
+
+interface BlockContent {
+    levelText: string;
+    selectorNameText: string;
+    selectorTitleText: string;
+    syntaxText: string;
+    hintText: string;
+    exemplesText: string;
+    exempleText: string;
+}
+
+export function writeInBlockRight(block: BlockContent) {
+    const level = document.querySelector('.number__level');
+    if (level) {
+        level.textContent = block.levelText;
+    }
+
+    const selectorName = document.querySelector('.selector__name');
+    if (selectorName) {
+        selectorName.textContent = block.selectorNameText;
+    }
+
+    const selectorTitle = document.querySelector('.selector__title');
+    if (selectorTitle) {
+        selectorTitle.textContent = block.selectorTitleText;
+    }
+
+    const syntax = document.querySelector('.syntax');
+    if (syntax) {
+        syntax.textContent = block.syntaxText;
+    }
+
+    const hint = document.querySelector('.hint');
+    if (hint) {
+        hint.textContent = block.hintText;
+    }
+
+    const exemples = document.querySelector('.exemples');
+    if (exemples) {
+        exemples.textContent = block.exemplesText;
+    }
+
+    const exemple = document.querySelector('.exemple');
+    if (exemple) {
+        exemple.textContent = block.exempleText;
+    }
+}
+
+//////////////////////////////////////////////// ОТРИСОВКА ТЕГОВ ТАСКА
+
+export function writeTags() {
+    const elem = document.querySelector('.table__task');
+    if (elem) {
+        const htmlCode = elem.outerHTML;
+        const tagsTask = document.querySelector('.tags-task');
+        if (tagsTask) {
+            tagsTask.textContent = htmlCode;
+        } else {
+            console.log('Элемент tags-task не найден');
+        }
+    } else {
+        console.log('Элемент не найден');
+    }
+}

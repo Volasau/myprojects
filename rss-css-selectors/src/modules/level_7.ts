@@ -1,4 +1,5 @@
-import { resultTask } from './functions';
+import { resultTask, writeInBlockRight, writeTags } from './functions';
+import { blocks } from './infoLevel';
 
 export function setupTask7() {
     const Task1 = document.querySelector('.name__tasks');
@@ -18,8 +19,11 @@ export function setupTask7() {
     orangeSmall1.classList.add('dance');
 
     const plate1 = document.createElement('plate');
+
     const orange = document.createElement('orange');
+
     const plate2 = document.createElement('plate');
+
     const orangeSmall2 = document.createElement('orange');
     orangeSmall2.classList.add('small');
     orangeSmall2.classList.add('dance');
@@ -36,52 +40,7 @@ export function setupTask7() {
         plate2.appendChild(orangeSmall2);
     }
 
-    const elem = document.querySelector('.table__task');
-    if (elem) {
-        const htmlCode = elem.outerHTML;
-        const tagsTask = document.querySelector('.tags-task');
-        if (tagsTask) {
-            tagsTask.textContent = htmlCode;
-        } else {
-            console.log('Элемент tags-task не найден');
-        }
-    } else {
-        console.log('Элемент не найден');
-    }
-
-    //////////////////////BLOCK RIGHT///////////////////////
-    const level = document.querySelector('.number__level');
-    if (level) {
-        level.textContent = ' 7';
-    }
-
-    const selectorName = document.querySelector('.selector__name');
-    if (selectorName) {
-        selectorName.textContent = '';
-    }
-
-    const selectorTitle = document.querySelector('.selector__title');
-    if (selectorTitle) {
-        selectorTitle.textContent = 'Combine the Class Selector';
-    }
-
-    const syntax = document.querySelector('.syntax');
-    if (syntax) {
-        syntax.textContent = 'A.className';
-    }
-    const hint = document.querySelector('.hint');
-    if (hint) {
-        hint.textContent = 'You can combine the class selector with other selectors, like the type selector.';
-    }
-    const exemples = document.querySelector('.exemples');
-    if (exemples) {
-        exemples.textContent = 'ul.important selects all ul elements that have class="important"';
-    }
-
-    const exemple = document.querySelector('.exemple');
-    if (exemple) {
-        exemple.textContent = '#big.wide selects all elements with id="big" that also have class="wide"';
-    }
-
+    writeTags();
+    writeInBlockRight(blocks[6]);
     resultTask('orange.small', 7);
 }
