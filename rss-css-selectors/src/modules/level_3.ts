@@ -1,4 +1,4 @@
-import { endTask, shakeBlock } from './functions';
+import { resultTask } from './functions';
 
 export function setupTask3() {
     const Task1 = document.querySelector('.name__tasks');
@@ -30,7 +30,6 @@ export function setupTask3() {
         } else {
             console.log('Элемент tags-task не найден');
         }
-        // console.log(htmlCode);
     } else {
         console.log('Элемент не найден');
     }
@@ -69,44 +68,6 @@ export function setupTask3() {
     if (exemple) {
         exemple.textContent = 'ul#long selects ul id="long"';
     }
+
+    resultTask('#fancy', 3);
 }
-
-const answerFhree = '#fancy';
-
-document.addEventListener('DOMContentLoaded', function () {
-    const solutionInput = document.querySelector('.solution') as HTMLInputElement;
-    const submitButton = document.querySelector('.solution__button');
-    const placeGame = document.querySelector('.place__game') as HTMLDivElement;
-
-    if (solutionInput && submitButton && placeGame) {
-        submitButton.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const userInput = solutionInput.value;
-            console.log(userInput);
-
-            if (userInput === answerFhree) {
-                endTask();
-            } else {
-                shakeBlock(placeGame);
-            }
-        });
-
-        solutionInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-
-                const userInput = solutionInput.value;
-                console.log(userInput);
-
-                if (userInput === answerFhree) {
-                    endTask();
-                } else {
-                    shakeBlock(placeGame);
-                }
-            }
-        });
-    } else {
-        console.log('Элемент solutionInput, submitButton или placeGame не найден.');
-    }
-});

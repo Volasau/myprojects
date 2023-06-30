@@ -1,5 +1,4 @@
-// import hljs from 'highlight.js/lib/common';
-import { endTask, shakeBlock } from './functions';
+import { resultTask } from './functions';
 
 export function setupTask2() {
     const Task1 = document.querySelector('.name__tasks');
@@ -31,7 +30,6 @@ export function setupTask2() {
         } else {
             console.log('Элемент tags-task не найден');
         }
-        // console.log(htmlCode);
     } else {
         console.log('Элемент не найден');
     }
@@ -71,43 +69,5 @@ export function setupTask2() {
         exemple.textContent = 'p selects all p elements.';
     }
 
-    const answerTwo = 'bento';
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const solutionInput = document.querySelector('.solution') as HTMLInputElement;
-        const submitButton = document.querySelector('.solution__button');
-        const placeGame = document.querySelector('.place__game') as HTMLDivElement;
-
-        if (solutionInput && submitButton && placeGame) {
-            submitButton.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                const userInput = solutionInput.value;
-                console.log(userInput);
-
-                if (userInput === answerTwo) {
-                    endTask();
-                } else {
-                    shakeBlock(placeGame);
-                }
-            });
-
-            solutionInput.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-
-                    const userInput = solutionInput.value;
-                    console.log(userInput);
-
-                    if (userInput === answerTwo) {
-                        endTask();
-                    } else {
-                        shakeBlock(placeGame);
-                    }
-                }
-            });
-        } else {
-            console.log('Элемент solutionInput, submitButton или placeGame не найден.');
-        }
-    });
+    resultTask('bento', 2);
 }

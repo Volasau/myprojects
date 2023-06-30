@@ -1,7 +1,8 @@
-import { endTask, shakeBlock } from './functions';
+import { resultTask } from './functions';
 
 export function setupTask1() {
-    const answerOne = 'plate';
+    // clearTask();
+
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
         Task1.textContent = 'Select the plates';
@@ -28,7 +29,6 @@ export function setupTask1() {
         } else {
             console.log('Элемент tags-task не найден');
         }
-        // console.log(htmlCode);
     } else {
         console.log('Элемент не найден');
     }
@@ -69,42 +69,5 @@ export function setupTask1() {
         exemple.textContent = 'p selects all p elements.';
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const solutionInput = document.querySelector('.solution') as HTMLInputElement;
-        const submitButton = document.querySelector('.solution__button');
-        const placeGame = document.querySelector('.place__game') as HTMLDivElement;
-
-        if (solutionInput && submitButton && placeGame) {
-            submitButton.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                let userInput = solutionInput.value;
-                console.log(userInput);
-
-                if (userInput === answerOne) {
-                    endTask();
-                    userInput = '';
-                } else {
-                    shakeBlock(placeGame);
-                }
-            });
-
-            solutionInput.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-
-                    const userInput = solutionInput.value;
-                    console.log(userInput);
-
-                    if (userInput === answerOne) {
-                        endTask();
-                    } else {
-                        shakeBlock(placeGame);
-                    }
-                }
-            });
-        } else {
-            console.log('Элемент solutionInput, submitButton или placeGame не найден.');
-        }
-    });
+    resultTask('plate', 1);
 }

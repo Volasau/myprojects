@@ -1,4 +1,4 @@
-import { endTask, shakeBlock /*clearTask*/ } from './functions';
+import { resultTask } from './functions';
 
 export function setupTask5() {
     const Task1 = document.querySelector('.name__tasks');
@@ -36,7 +36,6 @@ export function setupTask5() {
         } else {
             console.log('Элемент tags-task не найден');
         }
-        // console.log(htmlCode);
     } else {
         console.log('Элемент не найден');
     }
@@ -74,43 +73,5 @@ export function setupTask5() {
     if (exemple) {
         exemple.textContent = '';
     }
-
-    const answerFive = '#fancy pickle';
-
-    const solutionInput = document.querySelector('.solution') as HTMLInputElement;
-    const submitButton = document.querySelector('.solution__button');
-    const placeGame = document.querySelector('.place__game') as HTMLDivElement;
-
-    if (solutionInput && submitButton && placeGame) {
-        submitButton.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            const userInput = solutionInput.value;
-            console.log(userInput);
-
-            if (userInput === answerFive) {
-                solutionInput.value = '';
-                endTask();
-            } else {
-                shakeBlock(placeGame);
-            }
-        });
-
-        solutionInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-
-                const userInput = solutionInput.value;
-                console.log(userInput);
-
-                if (userInput === answerFive) {
-                    endTask();
-                } else {
-                    shakeBlock(placeGame);
-                }
-            }
-        });
-    } else {
-        console.log('Элемент solutionInput, submitButton или placeGame не найден.');
-    }
+    resultTask('#fancy pickle', 5);
 }
