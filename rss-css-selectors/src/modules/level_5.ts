@@ -1,4 +1,4 @@
-import { resultTask, writeInBlockRight, writeTags } from './functions';
+import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
 
 export function setupTask5() {
@@ -31,7 +31,7 @@ export function setupTask5() {
         tableTask.appendChild(plate);
         plate.appendChild(pickle2);
     }
-
+    showTag();
     writeTags();
     writeInBlockRight(blocks[4]);
     resultTask('#fancy pickle', 5);

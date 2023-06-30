@@ -1,4 +1,4 @@
-import { resultTask, writeInBlockRight, writeTags } from './functions';
+import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
 
 export function setupTask4() {
@@ -23,7 +23,7 @@ export function setupTask4() {
         plate.appendChild(apple1);
         tableTask.appendChild(apple);
     }
-
+    showTag();
     writeTags();
     writeInBlockRight(blocks[3]);
     resultTask('plate apple', 4);

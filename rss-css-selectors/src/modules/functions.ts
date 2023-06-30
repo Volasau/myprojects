@@ -320,3 +320,28 @@ export function writeTags() {
         console.log('Элемент не найден');
     }
 }
+
+///////////////////////////////////////////////////////// ПОКАЗАТЬ ТЕГ ПРИ НАВОДКЕ МЫШИ
+
+export function showTag() {
+    const tableTask = document.querySelector('.table__task');
+
+    if (tableTask) {
+        const childTable = tableTask.querySelectorAll<HTMLElement>('*');
+        const tag = document.querySelector<HTMLElement>('.tag__text');
+        if (tag) {
+            childTable.forEach((elem) => {
+                elem.addEventListener('mouseover', (event) => {
+                    const target = event.target as HTMLElement;
+                    if (target == elem) {
+                        tag.textContent = target.outerHTML;
+                        tag.style.display = 'block';
+                    }
+                });
+                elem.addEventListener('mouseout', () => {
+                    tag.style.display = 'none';
+                });
+            });
+        }
+    }
+}
