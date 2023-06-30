@@ -176,6 +176,7 @@ body {
     display: flex;
     justify-content: center;
     margin: 3px 3px 0 0;
+    cursor: pointer;
 }
 
 .level__btn:hover {
@@ -455,7 +456,13 @@ apple {
     margin: 30px 10px;
 }
 
+.block {
+    display: block;
+}
 
+.none {
+    display: none;
+}
 
 
 

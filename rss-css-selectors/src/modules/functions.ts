@@ -72,16 +72,29 @@ export function selectLevel() {
 }
 
 ////////////////////////////////////////// ПРОВЕРКА РЕЗУЛЬТАТА УРОВНЯ
-let task1Completed = false;
-let task2Completed = false;
-let task3Completed = false;
-let task4Completed = false;
-let task5Completed = false;
-let task6Completed = false;
-let task7Completed = false;
-let task8Completed = false;
-let task9Completed = false;
-let task10Completed = false;
+const task1Completed = false;
+const task2Completed = false;
+const task3Completed = false;
+const task4Completed = false;
+const task5Completed = false;
+const task6Completed = false;
+const task7Completed = false;
+const task8Completed = false;
+const task9Completed = false;
+const task10Completed = false;
+
+const completedLevels = [
+    task1Completed,
+    task2Completed,
+    task3Completed,
+    task4Completed,
+    task5Completed,
+    task6Completed,
+    task7Completed,
+    task8Completed,
+    task9Completed,
+    task10Completed,
+];
 
 export function resultTask(answer: string, levelNumber: number) {
     const solutionInput = document.querySelector('.solution') as HTMLInputElement;
@@ -96,28 +109,55 @@ export function resultTask(answer: string, levelNumber: number) {
             if (solutionInput.value === answer) {
                 answer = 'rsschool';
                 endTask();
-                if (levelNumber === 1) {
-                    task1Completed = true;
-                } else if (levelNumber === 2) {
-                    task2Completed = true;
-                } else if (levelNumber === 3) {
-                    task3Completed = true;
-                } else if (levelNumber === 4) {
-                    task4Completed = true;
-                } else if (levelNumber === 5) {
-                    task5Completed = true;
-                } else if (levelNumber === 6) {
-                    task6Completed = true;
-                } else if (levelNumber === 7) {
-                    task7Completed = true;
-                } else if (levelNumber === 8) {
-                    task8Completed = true;
-                } else if (levelNumber === 9) {
-                    task9Completed = true;
-                } else if (levelNumber === 10) {
-                    task10Completed = true;
-                }
-                winbtn.classList.add('level__win');
+                setTimeout(() => {
+                    completedLevels[levelNumber - 1] = true;
+                    winbtn.classList.add('level__win');
+                    for (let i = levelNumber; i < completedLevels.length; i++) {
+                        if (!completedLevels[i]) {
+                            clearTask();
+                            switch (i + 1) {
+                                case 1:
+                                    setupTask1();
+                                    break;
+                                case 2:
+                                    setupTask2();
+                                    break;
+                                case 3:
+                                    setupTask3();
+                                    break;
+                                case 4:
+                                    setupTask4();
+                                    break;
+                                case 5:
+                                    setupTask5();
+                                    break;
+                                case 6:
+                                    setupTask6();
+                                    break;
+                                case 7:
+                                    setupTask7();
+                                    break;
+                                case 8:
+                                    setupTask8();
+                                    break;
+                                case 9:
+                                    setupTask9();
+                                    break;
+                                case 10:
+                                    setupTask10();
+                                    break;
+                                default:
+                                    console.log('All levels completed');
+                                    break;
+                            }
+                            break;
+                        }
+                    }
+                    const allLevelsCompleted = completedLevels.every((level) => level === true);
+                    if (allLevelsCompleted) {
+                        alert('ok');
+                    }
+                }, 1000);
             } else {
                 shakeBlock(placeGame);
             }
@@ -129,28 +169,56 @@ export function resultTask(answer: string, levelNumber: number) {
                 if (solutionInput.value === answer) {
                     answer = 'rsschool';
                     endTask();
-                    if (levelNumber === 1) {
-                        task1Completed = true;
-                    } else if (levelNumber === 2) {
-                        task2Completed = true;
-                    } else if (levelNumber === 3) {
-                        task3Completed = true;
-                    } else if (levelNumber === 4) {
-                        task4Completed = true;
-                    } else if (levelNumber === 5) {
-                        task5Completed = true;
-                    } else if (levelNumber === 6) {
-                        task6Completed = true;
-                    } else if (levelNumber === 7) {
-                        task7Completed = true;
-                    } else if (levelNumber === 8) {
-                        task8Completed = true;
-                    } else if (levelNumber === 9) {
-                        task9Completed = true;
-                    } else if (levelNumber === 10) {
-                        task10Completed = true;
-                    }
-                    winbtn.classList.add('level__win');
+                    setTimeout(() => {
+                        completedLevels[levelNumber - 1] = true;
+                        winbtn.classList.add('level__win');
+                        for (let i = levelNumber; i < completedLevels.length; i++) {
+                            if (!completedLevels[i]) {
+                                clearTask();
+
+                                switch (i + 1) {
+                                    case 1:
+                                        setupTask1();
+                                        break;
+                                    case 2:
+                                        setupTask2();
+                                        break;
+                                    case 3:
+                                        setupTask3();
+                                        break;
+                                    case 4:
+                                        setupTask4();
+                                        break;
+                                    case 5:
+                                        setupTask5();
+                                        break;
+                                    case 6:
+                                        setupTask6();
+                                        break;
+                                    case 7:
+                                        setupTask7();
+                                        break;
+                                    case 8:
+                                        setupTask8();
+                                        break;
+                                    case 9:
+                                        setupTask9();
+                                        break;
+                                    case 10:
+                                        setupTask10();
+                                        break;
+                                    default:
+                                        console.log('All levels completed');
+                                        break;
+                                }
+                                break;
+                            }
+                        }
+                        const allLevelsCompleted = completedLevels.every((level) => level === true);
+                        if (allLevelsCompleted) {
+                            alert('ok');
+                        }
+                    }, 1000);
                 } else {
                     shakeBlock(placeGame);
                 }
@@ -193,7 +261,7 @@ export function endTask() {
             }, 1000);
         }
         setTimeout(() => {
-            clearTask();
+            // clearTask();
         }, 1000);
     }
 }
