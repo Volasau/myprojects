@@ -1,3 +1,4 @@
+window.addEventListener('load', saveGame);
 ////////////////////////////////////////////////// ВЫБОР УРОВНЯ ИГРЫ
 
 import { setupTask1 } from './level_1';
@@ -83,7 +84,7 @@ const task8Completed = false;
 const task9Completed = false;
 const task10Completed = false;
 
-const completedLevels = [
+let completedLevels = [
     task1Completed,
     task2Completed,
     task3Completed,
@@ -111,6 +112,7 @@ export function resultTask(answer: string, levelNumber: number) {
                 endTask();
                 setTimeout(() => {
                     completedLevels[levelNumber - 1] = true;
+                    localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
                     winbtn.classList.add('level__win');
                     for (let i = levelNumber; i < completedLevels.length; i++) {
                         if (!completedLevels[i]) {
@@ -171,6 +173,7 @@ export function resultTask(answer: string, levelNumber: number) {
                     endTask();
                     setTimeout(() => {
                         completedLevels[levelNumber - 1] = true;
+                        localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
                         winbtn.classList.add('level__win');
                         for (let i = levelNumber; i < completedLevels.length; i++) {
                             if (!completedLevels[i]) {
@@ -228,7 +231,6 @@ export function resultTask(answer: string, levelNumber: number) {
         console.log('Элемент solutionInput, submitButton или placeGame не найден.');
     }
 }
-
 //////////////////////////////////////////////////////////RESTART
 
 function restartTasks() {
@@ -240,6 +242,7 @@ function restartTasks() {
     levelBtns.forEach((btn) => {
         btn.classList.remove('level__win');
     });
+    localStorage.removeItem('completedLevels');
 }
 const restartButton = document.querySelector('.restart__btn');
 if (restartButton) {
@@ -426,6 +429,22 @@ export function showTag() {
                 elem.addEventListener('mouseout', () => {
                     tag.style.display = 'none';
                 });
+            });
+        }
+    }
+}
+////////////////////////////////////////////////////////СОХРАНЕНИЕ ИГРЫ
+function saveGame() {
+    const savedProgress = localStorage.getItem('completedLevels');
+    if (savedProgress) {
+        const savedLevels = JSON.parse(savedProgress);
+        if (Array.isArray(savedLevels) && savedLevels.length === completedLevels.length) {
+            completedLevels = savedLevels;
+            const levelBtns = document.querySelectorAll('.level__btn');
+            levelBtns.forEach((btn, index) => {
+                if (completedLevels[index]) {
+                    btn.classList.add('level__win');
+                }
             });
         }
     }
