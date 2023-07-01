@@ -1,28 +1,29 @@
 import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
+import { answers } from './infoLevel';
 
 export function setupTask3() {
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
-        Task1.textContent = 'Select the bento boxes';
+        Task1.textContent = 'Select the hexagon boxes';
     }
 
-    const plateBlu = document.createElement('plate');
-    plateBlu.id = 'fancy';
-    plateBlu.classList.add('dance');
+    const circleBlu = document.createElement('circle');
+    circleBlu.id = 'border';
+    circleBlu.classList.add('dance');
 
-    const plate2 = document.createElement('plate');
+    const circle2 = document.createElement('circle');
 
-    const bento2 = document.createElement('bento');
+    const hexagon2 = document.createElement('hexagon');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(plateBlu);
-        tableTask.appendChild(plate2);
-        tableTask.appendChild(bento2);
+        tableTask.appendChild(circleBlu);
+        tableTask.appendChild(circle2);
+        tableTask.appendChild(hexagon2);
     }
     showTag();
     writeTags();
     writeInBlockRight(blocks[2]);
-    resultTask('#fancy', 3);
+    resultTask(answers[2], 3);
 }

@@ -98,3 +98,16 @@ export const blocks = [
         exempleText: '',
     },
 ];
+
+export const answers = [
+    'circle',
+    'hexagon',
+    '#border',
+    'circle green',
+    '#border square',
+    '.small',
+    'yellow.small',
+    'hexagon yellow.small',
+    'circle, hexagon',
+    '*',
+];

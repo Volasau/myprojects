@@ -157,7 +157,8 @@ export function resultTask(answer: string, levelNumber: number) {
                     }
                     const allLevelsCompleted = completedLevels.every((level) => level === true);
                     if (allLevelsCompleted) {
-                        alert('ok');
+                        // alert('YOU WON!!!');
+                        youWon();
                     }
                 }, 1000);
             } else {
@@ -219,7 +220,8 @@ export function resultTask(answer: string, levelNumber: number) {
                         }
                         const allLevelsCompleted = completedLevels.every((level) => level === true);
                         if (allLevelsCompleted) {
-                            alert('ok');
+                            // alert('YOU WON!!!');
+                            youWon();
                         }
                     }, 1000);
                 } else {
@@ -281,14 +283,14 @@ export function endTask() {
             }, 1000);
         }
         setTimeout(() => {
-            // clearTask();
+            clearTask();
         }, 1000);
     }
 }
 
 /////////////////////////////////////////////////////// ОЧИСТКА ПОЛЕЙ
 export function clearTask() {
-    const solutionInput = document.querySelector('.solution') as HTMLInputElement;
+    const solutionInput = document.querySelector('#solution') as HTMLInputElement;
     if (solutionInput) {
         solutionInput.value = '';
     }
@@ -417,15 +419,18 @@ export function showTag() {
     if (tableTask) {
         const childTable = tableTask.querySelectorAll<HTMLElement>('*');
         const tag = document.querySelector<HTMLElement>('.tag__text');
+
         if (tag) {
             childTable.forEach((elem) => {
                 elem.addEventListener('mouseover', (event) => {
                     const target = event.target as HTMLElement;
                     if (target == elem) {
-                        tag.textContent = target.outerHTML;
+                        const clonedElem = target.cloneNode(false) as HTMLElement;
+                        tag.textContent = clonedElem.outerHTML;
                         tag.style.display = 'block';
                     }
                 });
+
                 elem.addEventListener('mouseout', () => {
                     tag.style.display = 'none';
                 });
@@ -447,5 +452,27 @@ function saveGame() {
                 }
             });
         }
+    }
+}
+
+// export function checkLevel(num: number) {
+//     const allBtn = document.querySelectorAll('leve__btn');
+//     allBtn.forEach((el) => el.classList.remove('red'));
+//     const btnNow = document.querySelector(`.level__${num}`) as HTMLDivElement;
+//     if (btnNow) {
+//         btnNow.classList.add('red');
+//     }
+// }
+
+function youWon() {
+    clearTask();
+    const finish = document.createElement('div');
+    finish.textContent = 'You winner';
+    finish.classList.add('text__win');
+    finish.classList.add('dance');
+
+    const tableTask = document.querySelector('.table__task');
+    if (tableTask) {
+        tableTask.appendChild(finish);
     }
 }

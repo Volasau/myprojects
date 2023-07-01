@@ -1,5 +1,6 @@
 import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
+import { answers } from './infoLevel';
 
 export function setupTask10() {
     const Task1 = document.querySelector('.name__tasks');
@@ -7,41 +8,36 @@ export function setupTask10() {
         Task1.textContent = 'Select all the things!';
     }
 
-    const pickleSmall1 = document.createElement('pickle');
-    pickleSmall1.classList.add('small');
-    pickleSmall1.classList.add('dance');
-
-    const apple = document.createElement('apple');
-    apple.classList.add('dance');
-
-    const plate1 = document.createElement('plate');
-    plate1.classList.add('dance');
-
-    const orangeSmall = document.createElement('orange');
-    orangeSmall.classList.add('small');
-    orangeSmall.classList.add('dance');
-
-    const bento1 = document.createElement('bento');
-    bento1.classList.add('dance');
-
-    const bento2 = document.createElement('bento');
-    bento2.classList.add('dance');
-
-    const orange = document.createElement('orange');
-    orange.classList.add('dance');
+    const squareSmall1 = document.createElement('square');
+    squareSmall1.classList.add('small');
+    squareSmall1.classList.add('dance');
+    const green = document.createElement('green');
+    green.classList.add('dance');
+    const circle1 = document.createElement('circle');
+    circle1.classList.add('dance');
+    const yellowSmall = document.createElement('yellow');
+    yellowSmall.classList.add('small');
+    yellowSmall.classList.add('dance');
+    const hexagon1 = document.createElement('hexagon');
+    hexagon1.classList.add('dance');
+    const hexagon2 = document.createElement('hexagon');
+    hexagon2.classList.add('dance');
+    const yellow = document.createElement('yellow');
+    yellow.classList.add('dance');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(bento2);
-        bento2.appendChild(orange);
-        tableTask.appendChild(pickleSmall1);
-        tableTask.appendChild(apple);
-        tableTask.appendChild(plate1);
-        plate1.appendChild(orangeSmall);
-        tableTask.appendChild(bento1);
+        tableTask.appendChild(hexagon2);
+        hexagon2.appendChild(yellow);
+        tableTask.appendChild(squareSmall1);
+        tableTask.appendChild(green);
+        tableTask.appendChild(circle1);
+        circle1.appendChild(yellowSmall);
+        tableTask.appendChild(hexagon1);
     }
+
     showTag();
     writeTags();
     writeInBlockRight(blocks[9]);
-    resultTask('*', 10);
+    resultTask(answers[9], 10);
 }

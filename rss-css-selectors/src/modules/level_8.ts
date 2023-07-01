@@ -1,50 +1,43 @@
 import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
+import { answers } from './infoLevel';
 
 export function setupTask8() {
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
-        Task1.textContent = 'Select the small oranges in the bentos';
+        Task1.textContent = 'Select the small yellowes in the hexagons';
     }
 
-    const bento1 = document.createElement('bento');
-
-    const orange = document.createElement('orange');
-
-    const orangeSmall1 = document.createElement('orange');
-    orangeSmall1.classList.add('small');
-
-    const bento2 = document.createElement('bento');
-
-    const orangeSmall2 = document.createElement('orange');
-    orangeSmall2.classList.add('small');
-    orangeSmall2.classList.add('dance');
-
-    const bento3 = document.createElement('bento');
-
-    const appleSmall1 = document.createElement('apple');
-    appleSmall1.classList.add('small');
-
-    const bento4 = document.createElement('bento');
-
-    const orangeSmall3 = document.createElement('orange');
-    orangeSmall3.classList.add('small');
-    orangeSmall3.classList.add('dance');
+    const hexagon1 = document.createElement('hexagon');
+    const yellow = document.createElement('yellow');
+    const yellowSmall1 = document.createElement('yellow');
+    yellowSmall1.classList.add('small');
+    const hexagon2 = document.createElement('hexagon');
+    const yellowSmall2 = document.createElement('yellow');
+    yellowSmall2.classList.add('small');
+    yellowSmall2.classList.add('dance');
+    const hexagon3 = document.createElement('hexagon');
+    const greenSmall1 = document.createElement('green');
+    greenSmall1.classList.add('small');
+    const hexagon4 = document.createElement('hexagon');
+    const yellowSmall3 = document.createElement('yellow');
+    yellowSmall3.classList.add('small');
+    yellowSmall3.classList.add('dance');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(bento1);
-        bento1.appendChild(orange);
-        tableTask.appendChild(orangeSmall1);
-        tableTask.appendChild(bento2);
-        bento2.appendChild(orangeSmall2);
-        tableTask.appendChild(bento3);
-        bento3.appendChild(appleSmall1);
-        tableTask.appendChild(bento4);
-        bento4.appendChild(orangeSmall3);
+        tableTask.appendChild(hexagon1);
+        hexagon1.appendChild(yellow);
+        tableTask.appendChild(yellowSmall1);
+        tableTask.appendChild(hexagon2);
+        hexagon2.appendChild(yellowSmall2);
+        tableTask.appendChild(hexagon3);
+        hexagon3.appendChild(greenSmall1);
+        tableTask.appendChild(hexagon4);
+        hexagon4.appendChild(yellowSmall3);
     }
     showTag();
     writeTags();
     writeInBlockRight(blocks[7]);
-    resultTask('bento orange.small', 8);
+    resultTask(answers[7], 8);
 }

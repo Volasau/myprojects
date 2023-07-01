@@ -71,6 +71,11 @@ body {
     transform-origin: top;
 }
 
+.text__win {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 35px;
+}
+
 .place__game * {
     font-size: 14px;
     line-height: 150%;
@@ -153,6 +158,130 @@ body {
 
 /*///////////////////////////////////////////////////////////*/
 
+/*//////////////////////////////   ПРЕДМЕТЫ  ////////////////////////////*/
+
+circle {
+
+    background: white;
+    border-radius: 100px;
+    border: solid 3px white;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    position: relative;
+    transition: border-color 0.5s ease;
+}
+
+hexagon {
+    width: 120px;
+    height: 100px;
+    position: relative;
+    background-color: #ff0000;
+    clip-path: polygon(50% 0%,
+            87% 25%,
+            87% 75%,
+            50% 100%,
+            13% 75%,
+            13% 25%);
+    transition: background-color 0.3s ease;
+}
+
+square {
+    width: 45px;
+    height: 45px;
+    background: #179837;
+    display: inline-block;
+    border: solid 3px #179837;
+    margin: 25px 10px;
+}
+
+yellow,
+green {
+    display: inline-block;
+    margin: 18px 10px;
+    height: 60px;
+    border-radius: 100px;
+    border-style: solid;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    margin: 20px 10px;
+    transition: border-color 0.5s ease;
+}
+
+yellow {
+    background: #f4f80f;
+    border-color: #f4f80f;
+}
+
+green {
+    background: #97ef2b;
+    border-color: #97ef2b;
+}
+
+
+
+hexagon:hover {
+    background: #ff0088;
+}
+
+circle:hover {
+    border-color: rgb(0, 0, 0);
+
+}
+
+green:hover {
+    border-color: rgb(0, 0, 0);
+    transform: scale(1);
+}
+
+yellow:hover {
+    transition: 1;
+    border-color: rgb(0, 0, 0);
+    transform: scale(1);
+}
+
+square:hover {
+    border-color: rgb(0, 0, 0);
+    transform: scale(1);
+}
+
+
+.dance {
+    transform-origin: bottom;
+    animation: pulse 1s infinite;
+    animation-delay: 0s, .5s;
+}
+
+.small {
+    width: 30px;
+    height: 30px;
+    margin: 30px 10px;
+}
+
+#border:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: calc(50% - 45px);
+    top: calc(50% - 41px);
+    height: 68px;
+    width: 74px;
+    border-radius: 60px;
+    border: dashed 8px red;
+    opacity: .4;
+}
+
+.fly-away {
+    animation-name: flyAway;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/*/////////////////////////////////////////////////////////*/
+
 
 /*///////////////////////////BLOCK right/////////////////////*/
 .block__right {
@@ -177,6 +306,7 @@ body {
     justify-content: center;
     margin: 3px 3px 0 0;
     cursor: pointer;
+    transition: background-color 0.4s ease;
 }
 
 .level__btn:hover {
@@ -185,6 +315,10 @@ body {
 
 .level__win {
     background-color: hsl(223, 93%, 62%)
+}
+
+.red {
+    background-color: #ff0000
 }
 
 .level__btn-select .title__right {
@@ -219,7 +353,6 @@ body {
 }
 
 
-
 /*///////////////////////////////////////////////////////////*/
 
 
@@ -245,72 +378,13 @@ body {
 
 /*////////////////////////////////////////////////*/
 
-plate {
-    box-shadow: 0px 8px 0px rgba(0, 0, 0, .1);
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    margin: 0 10px;
-    position: relative;
-}
-
-plate {
-    transition: transform ease-out .2s;
-}
-
-plate {
-    border-bottom: solid 5px #DDD;
-    background: white;
-    border-radius: 100px;
-}
-
-.dance {
-    transform-origin: bottom;
-    animation: pulse 1s infinite;
-    animation-delay: 0s, .5s;
-}
-
-bento:hover,
-plate:hover {
-
-    /* border-width: 15px 5px; */
-    border-color: rgb(243, 72, 200);
-}
-
-apple:hover {
-    border-color: rgb(30, 108, 33);
-    transform: scale(1);
-}
-
-orange:hover {
-    border-color: rgb(247, 191, 9);
-    transform: scale(1);
-}
-
-pickle:hover {
-    border-color: rgb(239, 22, 15);
-    transform: scale(1);
-}
-
-bento {
-    width: 100px;
-    height: 100px;
-    background: brown;
-    position: relative;
-    border: solid 3px #711c12;
-    border-width: 10px 0px;
-    margin: 0 0.5%;
-}
-
-
-
 @keyframes pulse {
     0% {
         transform: scale(1);
     }
 
     50% {
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
 
     100% {
@@ -357,14 +431,6 @@ bento {
 }
 
 
-/*FLY*/
-.fly-away {
-    animation-name: flyAway;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-}
-
 @keyframes flyAway {
     0% {
         transform: translate(0, 0);
@@ -390,88 +456,11 @@ bento {
     z-index: 1;
 }
 
-
-
-#fancy:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: calc(50% - 45px);
-    top: calc(50% - 41px);
-    height: 68px;
-    width: 74px;
-    border-radius: 60px;
-    border: dashed 8px red;
-    opacity: .4;
-}
-
-
-orange,
-apple {
-    border-radius: 100px;
-    border-style: solid;
-    border-width: 2px 5px 13px 5px;
-    height: 60px;
-    width: 60px;
-    position: relative;
-    margin: 20px 10px;
-}
-
-orange {
-    background: #f4f80f;
-    border-color: #f4f80f;
-}
-
-apple {
-    background: #97ef2b;
-    border-color: #64b927;
-}
-
-pickle {
-    width: 45px;
-    height: 45px;
-    background: #179837;
-    display: inline-block;
-    border: solid 3px #025a18;
-}
-
-pickle {
-    box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
-    display: inline-block;
-    margin: 25px 10px;
-}
-
-orange,
-apple {
-    box-shadow: 0px 5px 0px rgba(0, 0, 0, .2);
-    display: inline-block;
-    margin: 10px 10px;
-    height: 50px;
-}
-
-
-.small {
-    width: 30px;
-    height: 25px;
-    margin: 30px 10px;
-}
-
-.block {
-    display: block;
-}
-
-.none {
-    display: none;
-}
-
 .restart {
     display: flex;
     justify-content: center;
     margin-top: 10%;
 }
-
-
-
 
 @media screen and (max-width: 768px) {
 

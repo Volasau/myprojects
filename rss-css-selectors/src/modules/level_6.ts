@@ -1,5 +1,6 @@
 import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
+import { answers } from './infoLevel';
 
 export function setupTask6() {
     const Task1 = document.querySelector('.name__tasks');
@@ -7,30 +8,27 @@ export function setupTask6() {
         Task1.textContent = 'Select the small apples';
     }
 
-    const apple = document.createElement('apple');
+    const green = document.createElement('green');
+    const greenSmall1 = document.createElement('green');
+    greenSmall1.classList.add('dance');
+    greenSmall1.classList.add('small');
+    const circle1 = document.createElement('circle');
+    const greenSmall2 = document.createElement('green');
+    greenSmall2.classList.add('dance');
+    greenSmall2.classList.add('small');
 
-    const appleSmall1 = document.createElement('apple');
-    appleSmall1.classList.add('dance');
-    appleSmall1.classList.add('small');
-
-    const plate1 = document.createElement('plate');
-
-    const appleSmall2 = document.createElement('apple');
-    appleSmall2.classList.add('dance');
-    appleSmall2.classList.add('small');
-
-    const plate2 = document.createElement('plate');
+    const circle2 = document.createElement('circle');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(apple);
-        tableTask.appendChild(appleSmall1);
-        tableTask.appendChild(plate1);
-        plate1.appendChild(appleSmall2);
-        tableTask.appendChild(plate2);
+        tableTask.appendChild(green);
+        tableTask.appendChild(greenSmall1);
+        tableTask.appendChild(circle1);
+        circle1.appendChild(greenSmall2);
+        tableTask.appendChild(circle2);
     }
     showTag();
     writeTags();
     writeInBlockRight(blocks[5]);
-    resultTask('.small', 6);
+    resultTask(answers[5], 6);
 }
