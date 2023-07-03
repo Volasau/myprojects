@@ -8,6 +8,17 @@ body {
     background-color: rgb(231, 236, 246);
 }
 
+button {
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+}
+
+button:hover {
+    background-color: #8a9ff2;
+    color: #fff;
+}
+
 .wrapper,
 .footer {
     max-width: 1200px;
@@ -423,40 +434,36 @@ square:hover {
 }
 
 @keyframes shake {
-    0% {
-        transform: translateX(0);
+
+    0%,
+    50% {
+        opacity: 1;
     }
 
-    20% {
-        transform: translateX(-7px);
-    }
-
-    40% {
-        transform: translateX(7px);
-    }
-
-    60% {
-        transform: translateX(-7px);
-    }
-
-    80% {
-        transform: translateX(7px);
+    25%,
+    75% {
+        opacity: 0;
     }
 
     100% {
-        transform: translateX(0);
+        opacity: 1;
     }
 }
 
 
 @keyframes flyAway {
     0% {
-        transform: translate(0, 0);
+        transform: scale(1);
         opacity: 1;
     }
 
+    50% {
+        transform: scale(2);
+        opacity: 0.5;
+    }
+
     100% {
-        transform: translate(0, -100vh);
+        transform: scale(0);
         opacity: 0;
     }
 }
