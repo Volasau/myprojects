@@ -7,6 +7,9 @@ export function setupTask10() {
         Task1.textContent = 'Select all the things!';
     }
 
+    const square = document.createElement('square');
+    square.classList.add('dance');
+
     const squareSmall1 = document.createElement('square');
     squareSmall1.classList.add('small');
     squareSmall1.classList.add('dance');
@@ -26,13 +29,14 @@ export function setupTask10() {
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
+        tableTask.appendChild(square);
         tableTask.appendChild(hexagon2);
         hexagon2.appendChild(yellow);
         tableTask.appendChild(squareSmall1);
-        tableTask.appendChild(green);
+        tableTask.appendChild(hexagon1);
+        hexagon1.appendChild(green);
         tableTask.appendChild(circle1);
         circle1.appendChild(yellowSmall);
-        tableTask.appendChild(hexagon1);
     }
 
     addInputToContainer();

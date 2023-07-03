@@ -7,6 +7,10 @@ export function setupTask4() {
         Task1.textContent = 'Select the hexagon boxes';
     }
 
+    const circle1 = document.createElement('circle');
+    const green2 = document.createElement('green');
+    green2.classList.add('dance');
+
     const hexagon = document.createElement('hexagon');
 
     const circle = document.createElement('circle');
@@ -17,6 +21,8 @@ export function setupTask4() {
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
+        tableTask.appendChild(circle1);
+        circle1.appendChild(green2);
         tableTask.appendChild(hexagon);
         tableTask.appendChild(circle);
         circle.appendChild(green1);

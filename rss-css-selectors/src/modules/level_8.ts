@@ -15,9 +15,9 @@ export function setupTask8() {
     const yellowSmall2 = document.createElement('yellow');
     yellowSmall2.classList.add('small');
     yellowSmall2.classList.add('dance');
-    const hexagon3 = document.createElement('hexagon');
-    const greenSmall1 = document.createElement('green');
-    greenSmall1.classList.add('small');
+    const circle = document.createElement('circle');
+    const yellowSmall4 = document.createElement('yellow');
+    yellowSmall4.classList.add('small');
     const hexagon4 = document.createElement('hexagon');
     const yellowSmall3 = document.createElement('yellow');
     yellowSmall3.classList.add('small');
@@ -25,15 +25,15 @@ export function setupTask8() {
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(hexagon1);
-        hexagon1.appendChild(yellow);
         tableTask.appendChild(yellowSmall1);
         tableTask.appendChild(hexagon2);
         hexagon2.appendChild(yellowSmall2);
-        tableTask.appendChild(hexagon3);
-        hexagon3.appendChild(greenSmall1);
+        tableTask.appendChild(circle);
+        circle.appendChild(yellowSmall4);
         tableTask.appendChild(hexagon4);
         hexagon4.appendChild(yellowSmall3);
+        tableTask.appendChild(hexagon1);
+        hexagon1.appendChild(yellow);
     }
 
     addInputToContainer();

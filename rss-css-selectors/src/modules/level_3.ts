@@ -7,18 +7,23 @@ export function setupTask3() {
         Task1.textContent = 'Select the hexagon boxes';
     }
 
+    const circle = document.createElement('circle');
+
     const circleBlu = document.createElement('circle');
     circleBlu.id = 'border';
     circleBlu.classList.add('dance');
 
     const circle2 = document.createElement('circle');
+    const square = document.createElement('square');
 
     const hexagon2 = document.createElement('hexagon');
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
+        tableTask.appendChild(circle);
         tableTask.appendChild(circleBlu);
         tableTask.appendChild(circle2);
+        circle2.appendChild(square);
         tableTask.appendChild(hexagon2);
     }
 

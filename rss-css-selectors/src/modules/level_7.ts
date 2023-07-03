@@ -7,7 +7,7 @@ export function setupTask7() {
         Task1.textContent = 'Select the small yellowes';
     }
 
-    const green = document.createElement('green');
+    const square = document.createElement('square');
 
     const greenSmall1 = document.createElement('green');
     greenSmall1.classList.add('small');
@@ -27,7 +27,7 @@ export function setupTask7() {
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
-        tableTask.appendChild(green);
+        tableTask.appendChild(square);
         tableTask.appendChild(greenSmall1);
         tableTask.appendChild(hexagon);
         hexagon.appendChild(yellowSmall1);

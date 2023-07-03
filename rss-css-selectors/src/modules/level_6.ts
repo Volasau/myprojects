@@ -7,6 +7,11 @@ export function setupTask6() {
         Task1.textContent = 'Select the small apples';
     }
 
+    const circleBlu = document.createElement('circle');
+    circleBlu.id = 'border';
+    const greenSmall3 = document.createElement('green');
+    greenSmall3.classList.add('dance');
+    greenSmall3.classList.add('small');
     const green = document.createElement('green');
     const greenSmall1 = document.createElement('green');
     greenSmall1.classList.add('dance');
@@ -20,6 +25,8 @@ export function setupTask6() {
 
     const tableTask = document.querySelector('.table__task');
     if (tableTask) {
+        tableTask.appendChild(circleBlu);
+        circleBlu.appendChild(greenSmall3);
         tableTask.appendChild(green);
         tableTask.appendChild(greenSmall1);
         tableTask.appendChild(circle1);

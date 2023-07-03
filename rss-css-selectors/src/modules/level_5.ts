@@ -15,6 +15,7 @@ export function setupTask5() {
     const square1 = document.createElement('square');
     square1.classList.add('dance');
     const circle = document.createElement('circle');
+    circle.id = 'border';
     const square2 = document.createElement('square');
     square1.classList.add('dance');
 
@@ -25,7 +26,7 @@ export function setupTask5() {
         tableTask.appendChild(circleBlu);
         circleBlu.appendChild(square1);
         tableTask.appendChild(circle);
-        circle.appendChild(square2);
+        tableTask.appendChild(square2);
     }
 
     addInputToContainer();
