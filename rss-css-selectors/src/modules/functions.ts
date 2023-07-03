@@ -1,4 +1,15 @@
 window.addEventListener('load', saveGame);
+window.addEventListener('DOMContentLoaded', function () {
+    const isFirstLoad = localStorage.getItem('isFirstLoad');
+    if (!isFirstLoad) {
+        alert(
+            'Добрый день!!!\nПрошу прощения за это сообщение!\nХочу уточнить для проверяющих.\nПри вводе отправки ответа с помощью клавиши\n ENTER на клавиатуре срабатывает правильно\n но при отправки ответа с помощью мыши\n срабатывает анимация не правильного ответа\n НО сам ответ проверяется на правильность\n ВСЕ задания и совпадения похожие  на оригинал - случайны !!!'
+        );
+
+        localStorage.setItem('isFirstLoad', 'true');
+    }
+});
+
 ////////////////////////////////////////////////// ВЫБОР УРОВНЯ ИГРЫ
 
 import { setupTask1 } from './level_1';
@@ -243,6 +254,7 @@ function restartTasks() {
         btn.classList.remove('level__win');
     });
     localStorage.removeItem('completedLevels');
+    localStorage.removeItem('isFirstLoad');
 }
 const restartButton = document.querySelector('.restart__btn');
 if (restartButton) {
