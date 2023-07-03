@@ -2,22 +2,24 @@ export const blocks = [
     {
         levelText: ' 1',
         selectorNameText: 'Type Selector',
-        selectorTitleText: 'Select elements by their type',
+        selectorTitleText: 'Select elements by their type (tag)',
         syntaxText: 'A',
         hintText:
             'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
         exemplesText: 'ul.important selects all ul elements that have class="important"',
         exempleText: '#big.wide selects all elements with id="big" that also have class="wide"',
+        answer: 'circle',
     },
     {
         levelText: ' 2',
         selectorNameText: 'Type Selector',
-        selectorTitleText: 'Select elements by their type',
+        selectorTitleText: 'Select elements by their type (tag)',
         syntaxText: 'A',
         hintText:
             'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
         exemplesText: 'div selects all div elements.',
         exempleText: 'p selects all p elements.',
+        answer: 'hexagon',
     },
     {
         levelText: ' 3',
@@ -28,6 +30,7 @@ export const blocks = [
             'Selects the element with a specific id. You can also combine the ID selector with the type selector.',
         exemplesText: '#cool selects any element with id="cool"',
         exempleText: 'ul#long selects ul id="long"',
+        answer: '#border',
     },
     {
         levelText: ' 4',
@@ -37,6 +40,7 @@ export const blocks = [
         hintText: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
         exemplesText: 'p  strong selects all strong elements that are inside of any p',
         exempleText: '#fancy  span selects any span elements that are inside of the element with id="fancy"',
+        answer: 'circle green',
     },
     {
         levelText: ' 5',
@@ -46,6 +50,7 @@ export const blocks = [
         hintText: 'You can combine any selector with the descendent selector.',
         exemplesText: '#cool span selects all span elements that are inside of elements with id="cool"',
         exempleText: '',
+        answer: '#border square',
     },
     {
         levelText: ' 6',
@@ -56,6 +61,7 @@ export const blocks = [
             'The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.',
         exemplesText: '.neato selects all elements with',
         exempleText: 'class="neato"',
+        answer: '.small',
     },
     {
         levelText: ' 7',
@@ -65,6 +71,7 @@ export const blocks = [
         hintText: 'You can combine the class selector with other selectors, like the type selector.',
         exemplesText: 'ul.important selects all ul elements that have class="important"',
         exempleText: '#big.wide selects all elements with id="big" that also have class="wide"',
+        answer: 'yellow.small',
     },
 
     {
@@ -75,6 +82,7 @@ export const blocks = [
         hintText: 'Combine what you learned in the last few levels to solve this one!',
         exemplesText: '',
         exempleText: '',
+        answer: 'hexagon yellow.small',
     },
 
     {
@@ -86,6 +94,7 @@ export const blocks = [
             'Thanks to Shatner technology, this selects all A and B elements. You can combine any selectors this way, and you can specify more than two.',
         exemplesText: 'p, .fun selects all p elements as well as all elements with class="fun"',
         exempleText: 'a, p, div selects all a, p and div elements',
+        answer: 'circle, hexagon',
     },
 
     {
@@ -96,18 +105,6 @@ export const blocks = [
         hintText: 'You can select all elements with the universal selector!',
         exemplesText: 'p * selects any element inside all p elements.',
         exempleText: '',
+        answer: '*',
     },
-];
-
-export const answers = [
-    'circle',
-    'hexagon',
-    '#border',
-    'circle green',
-    '#border square',
-    '.small',
-    'yellow.small',
-    'hexagon yellow.small',
-    'circle, hexagon',
-    '*',
 ];

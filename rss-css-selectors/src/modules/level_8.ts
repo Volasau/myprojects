@@ -1,6 +1,5 @@
-import { resultTask, showTag, writeInBlockRight, writeTags } from './functions';
+import { addInputToContainer, resultTask, showTag, writeInBlockRight, writeTags } from './functions';
 import { blocks } from './infoLevel';
-import { answers } from './infoLevel';
 
 export function setupTask8() {
     const Task1 = document.querySelector('.name__tasks');
@@ -36,8 +35,36 @@ export function setupTask8() {
         tableTask.appendChild(hexagon4);
         hexagon4.appendChild(yellowSmall3);
     }
+
+    addInputToContainer();
+    writeInBlockRight(blocks[7]);
+
+    const helpButton = document.querySelector('.help');
+    const solutionInput = document.querySelector('#solution') as HTMLInputElement;
+    const answer = document.querySelector('.answer') as HTMLElement;
+    const argumentAnswer = answer.textContent;
+    if (helpButton && solutionInput && answer) {
+        helpButton.addEventListener('click', () => {
+            if (solutionInput) {
+                solutionInput.value = '';
+            }
+            const text = answer.textContent;
+            let index = 0;
+            const timer = setInterval(() => {
+                if (text) {
+                    solutionInput.value += text[index];
+                    index++;
+                    if (index >= text.length) {
+                        clearInterval(timer);
+                    }
+                }
+            }, 100);
+        });
+    }
+
     showTag();
     writeTags();
-    writeInBlockRight(blocks[7]);
-    resultTask(answers[7], 8);
+    if (argumentAnswer !== null) {
+        resultTask(argumentAnswer, 8);
+    }
 }

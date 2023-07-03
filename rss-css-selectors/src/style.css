@@ -73,7 +73,7 @@ body {
 
 .text__win {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 35px;
+    font-size: 55px;
 }
 
 .place__game * {
@@ -136,7 +136,7 @@ body {
 }
 
 .solution {
-    width: 80%;
+    width: 95%;
     font-family: menlo, monospace;
     color: #333;
     border: none;
@@ -154,6 +154,10 @@ body {
     outline: none;
     background-color: #fff;
     animation: none
+}
+
+.solution__button {
+    margin-top: 5px;
 }
 
 /*///////////////////////////////////////////////////////////*/
@@ -325,6 +329,16 @@ square:hover {
     background-color: #009ff2
 }
 
+.number__level {
+    font-size: 180%;
+    color: #0b67fa;
+
+}
+
+.title__right {
+    margin-top: 0;
+}
+
 .text__title,
 .display__help {
     color: rgba(0, 0, 0, 0.5);
@@ -350,6 +364,10 @@ square:hover {
 
 .exemple {
     padding-top: 6px;
+}
+
+.answer {
+    color: #ffffff75
 }
 
 

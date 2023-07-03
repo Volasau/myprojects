@@ -157,7 +157,6 @@ export function resultTask(answer: string, levelNumber: number) {
                     }
                     const allLevelsCompleted = completedLevels.every((level) => level === true);
                     if (allLevelsCompleted) {
-                        // alert('YOU WON!!!');
                         youWon();
                     }
                 }, 1000);
@@ -220,7 +219,6 @@ export function resultTask(answer: string, levelNumber: number) {
                         }
                         const allLevelsCompleted = completedLevels.every((level) => level === true);
                         if (allLevelsCompleted) {
-                            // alert('YOU WON!!!');
                             youWon();
                         }
                     }, 1000);
@@ -295,6 +293,13 @@ export function clearTask() {
         solutionInput.value = '';
     }
 
+    const placeInput = document.querySelector('.input');
+    const input = document.querySelector('#solution');
+
+    if (placeInput && input) {
+        placeInput.removeChild(input);
+    }
+
     const Task1 = document.querySelector('.name__tasks');
     if (Task1) {
         Task1.textContent = '';
@@ -343,6 +348,10 @@ export function clearTask() {
     if (exemple) {
         exemple.textContent = '';
     }
+    const answer = document.querySelector('.answer');
+    if (answer) {
+        answer.textContent = '';
+    }
 }
 
 //////////////////////////////////////// ПРАВЫЙ БЛОК
@@ -355,6 +364,7 @@ interface BlockContent {
     hintText: string;
     exemplesText: string;
     exempleText: string;
+    answer: string;
 }
 
 export function writeInBlockRight(block: BlockContent) {
@@ -391,6 +401,11 @@ export function writeInBlockRight(block: BlockContent) {
     const exemple = document.querySelector('.exemple');
     if (exemple) {
         exemple.textContent = block.exempleText;
+    }
+
+    const answer = document.querySelector('.answer');
+    if (answer) {
+        answer.textContent = block.answer;
     }
 }
 
@@ -455,14 +470,25 @@ function saveGame() {
     }
 }
 
-// export function checkLevel(num: number) {
-//     const allBtn = document.querySelectorAll('leve__btn');
-//     allBtn.forEach((el) => el.classList.remove('red'));
-//     const btnNow = document.querySelector(`.level__${num}`) as HTMLDivElement;
-//     if (btnNow) {
-//         btnNow.classList.add('red');
-//     }
-// }
+///////////////////////////////////////////////////СОЗДАЕМ ИНПУТ
+export function addInputToContainer() {
+    const placeInput = document.querySelector('.input');
+    if (!placeInput) {
+        console.log(`Контейнер с селектором не найден.`);
+        return;
+    }
+
+    const input = document.createElement('input');
+    input.id = 'solution';
+    input.classList.add('solution');
+    input.type = 'text';
+    input.autocomplete = 'off';
+    input.placeholder = 'Type in a CSS selector';
+
+    placeInput.appendChild(input);
+}
+
+/////////////////////////////////////////////////////КОНЕЦ ИГРЫ
 
 function youWon() {
     clearTask();
