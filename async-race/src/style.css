@@ -1,0 +1,87 @@
+* {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+  background-color: rgb(29, 15, 83);
+  font-size: 16px;
+  color: white;
+}
+
+h1 {
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.button__header {
+  width: 8rem;
+  height: 1.5rem;
+  background-color: rgb(7, 139, 18);
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: white;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.button__header:hover {
+  background-color: rgb(153, 33, 33);
+}
+
+.button__header:active {
+  background-color: rgb(243, 9, 9)
+}
+
+
+
+.header {
+  padding-bottom: 25px;
+}
+
+.menu__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu__create {
+  padding-bottom: 15px;
+}
+
+.input__text {
+  width: 200px;
+  height: 1.3rem;
+}
+
+.input {
+  margin-left: 10px;
+}
+
+.btn__menu {
+  width: 85px;
+  height: 27px;
+  border-radius: 5px;
+  background-color: rgb(9, 91, 198);
+  margin-left: 10px;
+  color: white;
+}
+
+.btn__menu:hover {
+  background-color: rgb(153, 33, 33)
+}
+
+.btn__menu:active {
+  background-color: rgb(243, 9, 9)
+}
+
+.btn__manag {
+  width: 107px;
+}
+
+.btn__cenerate {
+  width: 130px;
+}
+
+.place__race {
+  margin-left: 10px;
+}
