@@ -13,18 +13,17 @@ h1 {
   text-align: center;
 }
 
-button {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
 
-button:hover {
+
+.btn__menu:hover {
   background-color: rgb(153, 33, 33);
 }
 
-button:active {
+.btn__menu:active {
   background-color: rgb(243, 9, 9)
 }
+
+
 
 .button__header {
   width: 8rem;
@@ -34,6 +33,30 @@ button:active {
   letter-spacing: 2px;
   color: white;
   margin: 0 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button__header:hover {
+  background-color: rgb(153, 33, 33);
+}
+
+.button__header:active {
+  background-color: rgb(243, 9, 9)
+}
+
+.btn {
+  background-color: rgb(9, 91, 198);
+  color: white;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: rgb(153, 33, 33);
+}
+
+.btn:active {
+  background-color: rgb(243, 9, 9)
 }
 
 .header {
@@ -62,10 +85,9 @@ button:active {
 .btn__menu {
   width: 85px;
   height: 27px;
-  border-radius: 5px;
-  background-color: rgb(9, 91, 198);
   margin-left: 10px;
-  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 
@@ -83,16 +105,24 @@ button:active {
 
 
 .wrapper__pagination {
-  margin-left: 10px;
+  margin: 10px 0 0 10px;
 }
 
 .btn__pagination {
   width: 80px;
-  background-color: rgb(9, 91, 198);
-  color: white;
-  border-radius: 5px;
   margin-right: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
+/* .btn__pagination:hover {
+  background-color: rgb(153, 33, 33);
+}
+
+
+.btn__pagination:active {
+  background-color: rgb(243, 9, 9)
+} */
 
 /*///  CREATE CAR  /////*/
 .header__trak {
@@ -113,7 +143,7 @@ button:active {
 .finish {
   display: flex;
   align-items: flex-end;
-  margin-right: 20%;
+  margin-right: 18%;
 }
 
 .finish .flag {
@@ -137,4 +167,44 @@ button:active {
 
 .car {
   margin-bottom: -6px;
+}
+
+.btn__car {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.btn__motor {
+  margin-top: 5px;
+  width: 45px;
+  height: 25px;
+}
+
+.btn__motor {
+  background-color: transparent;
+  /* box-sizing: border-box; */
+  border-radius: 8px;
+}
+
+.btn__start {
+  color: rgb(26, 246, 11);
+  border: rgb(15, 251, 15) 2px solid;
+}
+
+.btn__stop {
+  color: rgb(246, 31, 11);
+  border: rgb(246, 31, 11) 2px solid;
+}
+
+.disabled {
+  border-color: grey;
+  color: grey;
+}
+
+
+.table__title {
+
+  border: 1px solid #0d6efd;
+  width: 200px;
+  height: 50px;
 }

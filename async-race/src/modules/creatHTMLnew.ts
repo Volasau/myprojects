@@ -1,4 +1,5 @@
-// import { Car } from './dataBase';
+import { Car /*Winner*/ } from './dataBase';
+import { getCarsList, createNewCar } from './apiREST';
 
 export function addBody() {
   const { body } = document;
@@ -6,11 +7,13 @@ export function addBody() {
   wrapper.classList.add('wrapper');
   body.appendChild(wrapper);
   wrapper.appendChild(createHeaderRace());
+  creatGarage();
 }
 
 function createHeaderRace() {
   const header = document.createElement('div');
   header.classList.add('header');
+
   const h1 = document.createElement('h1');
   h1.textContent = 'Async-Race';
   h1.classList.add('h1__text');
@@ -18,13 +21,35 @@ function createHeaderRace() {
   const buttoGarage = document.createElement('button');
   buttoGarage.classList.add('button__header', 'button-garage');
   buttoGarage.textContent = 'GARAGE';
+  buttoGarage.addEventListener('click', function () {
+    const wrapperWinners = document.querySelector('.wrapper__winners');
+    if (wrapperWinners instanceof Node && wrapperWinners.parentNode) {
+      wrapperWinners.parentNode.removeChild(wrapperWinners);
+    }
+    const garageWrapper = document.querySelector('.garage__wrapper');
+    if (!garageWrapper) {
+      creatGarage();
+    }
+  });
+
   const buttoWinner = document.createElement('button');
   buttoWinner.classList.add('button__header', 'button-winner');
   buttoWinner.textContent = 'WINNERS';
+  buttoWinner.addEventListener('click', function () {
+    const garageWrapper = document.querySelector('.garage__wrapper');
+    if (garageWrapper instanceof Node && garageWrapper.parentNode) {
+      garageWrapper.parentNode.removeChild(garageWrapper);
+    }
+    const wrapperWinners = document.querySelector('.wrapper__winners');
+    if (!wrapperWinners) {
+      creatWinners();
+    }
+  });
 
-  header?.appendChild(h1);
-  header?.appendChild(buttoGarage);
-  header?.appendChild(buttoWinner);
+  header.appendChild(h1);
+  header.appendChild(buttoGarage);
+  header.appendChild(buttoWinner);
+
   return header;
 }
 
@@ -39,8 +64,14 @@ export function creatGarage() {
   menuGarage.appendChild(garageMenuCreate());
   menuGarage.appendChild(garageMenuUpdate());
   menuGarage.appendChild(garageManagment());
-  garageWrapper.appendChild(addPlaceTraks());
-  garageWrapper.appendChild(addBtnPagination());
+  getCarsList()
+    .then((cars) => {
+      garageWrapper.appendChild(addPlaceTraks(cars));
+      garageWrapper.appendChild(addBtnPagination());
+    })
+    .catch((error) => {
+      console.log('Произошла ошибка при получении списка машин:', error);
+    });
 }
 
 function garageMenuCreate() {
@@ -55,8 +86,27 @@ function garageMenuCreate() {
   inputColorCreate.classList.add('input', 'input__create', 'input__color');
 
   const buttonCreate = document.createElement('button');
-  buttonCreate.classList.add('btn__menu');
+  buttonCreate.classList.add('btn__menu', 'btn');
   buttonCreate.textContent = 'CREATE';
+
+  buttonCreate.addEventListener('click', function () {
+    const name = inputTextCreate.value;
+    const color = inputColorCreate.value;
+
+    const garageWrapper = document.querySelector('.garage__wrapper');
+    if (garageWrapper) {
+      garageWrapper.remove();
+    }
+
+    createNewCar(name, color)
+      .then((car) => {
+        console.log('Новая машина успешно добавлена:', car);
+        creatGarage();
+      })
+      .catch((error) => {
+        console.log('Произошла ошибка при добавлении новой машины:', error);
+      });
+  });
   menuCreat.append(inputTextCreate);
   menuCreat.append(inputColorCreate);
   menuCreat.append(buttonCreate);
@@ -75,7 +125,7 @@ function garageMenuUpdate() {
   inputColorUpdate.classList.add('input', 'input__update', 'input__color');
 
   const buttonUpdate = document.createElement('button');
-  buttonUpdate.classList.add('btn__menu');
+  buttonUpdate.classList.add('btn__menu', 'btn');
   buttonUpdate.textContent = 'UPDATE';
   menuUpdate.append(inputTextUpdate);
   menuUpdate.append(inputColorUpdate);
@@ -88,13 +138,13 @@ function garageManagment() {
   containerBtn.classList.add('container__btn-manag');
 
   const butnRace = document.createElement('button');
-  butnRace.classList.add('btn__menu', 'btn__manag');
+  butnRace.classList.add('btn__menu', 'btn__manag', 'btn');
   butnRace.textContent = 'RACE';
   const butnReset = document.createElement('button');
-  butnReset.classList.add('btn__menu', 'btn__manag');
+  butnReset.classList.add('btn__menu', 'btn__manag', 'btn');
   butnReset.textContent = 'RESET';
   const butnCenerateCar = document.createElement('button');
-  butnCenerateCar.classList.add('btn__menu', 'btn__cenerate');
+  butnCenerateCar.classList.add('btn__menu', 'btn__cenerate', 'btn');
   butnCenerateCar.textContent = 'GENERATE CARS';
 
   containerBtn.appendChild(butnRace);
@@ -104,7 +154,7 @@ function garageManagment() {
   return containerBtn;
 }
 
-function addPlaceTraks() {
+export function addPlaceTraks(cars: Car[]) {
   const placeRace = document.createElement('div');
   placeRace.classList.add('place__race');
   const pageTitle = document.createElement('h2');
@@ -119,7 +169,10 @@ function addPlaceTraks() {
   placeRace.appendChild(pageTitle);
   placeRace.appendChild(pageNumber);
   placeRace.appendChild(raceTracks);
-  placeRace.appendChild(createTraks());
+  cars.forEach((car) => {
+    const track = createTraks(car);
+    raceTracks.appendChild(track);
+  });
   return placeRace;
 }
 
@@ -127,10 +180,10 @@ function addBtnPagination() {
   const pagination = document.createElement('div');
   pagination.classList.add('wrapper__pagination');
   const btnPrev = document.createElement('button');
-  btnPrev.classList.add('button__prev', 'btn__pagination');
+  btnPrev.classList.add('button__prev', 'btn__pagination', 'btn');
   btnPrev.textContent = 'PREV';
   const btnNext = document.createElement('button');
-  btnNext.classList.add('button__next', 'btn__pagination');
+  btnNext.classList.add('button__next', 'btn__pagination', 'btn');
   btnNext.textContent = 'NEXT';
 
   pagination.appendChild(btnNext);
@@ -138,19 +191,25 @@ function addBtnPagination() {
   return pagination;
 }
 
-function createTraks(/*car: Car*/) {
+function createTraks(car: Car) {
   const wrapperCar = document.createElement('div');
+  wrapperCar.classList.add('section__car');
+  wrapperCar.id = `${car.id}`;
   const headerTrak = document.createElement('div');
   headerTrak.classList.add('header__trak');
   const btnSelect = document.createElement('button');
-  btnSelect.classList.add('btn__car', 'btn__select');
+  btnSelect.classList.add('btn__car', 'btn__select', 'btn');
+  btnSelect.setAttribute('data-select', `${car.id}-select`);
+
   btnSelect.textContent = 'SELECT';
   const btnRemove = document.createElement('button');
-  btnRemove.classList.add('btn__car', 'btn__remove');
+  btnRemove.classList.add('btn__car', 'btn__remove', 'btn');
+  btnRemove.setAttribute('data-remove', `${car.id}-remove`);
+
   btnRemove.textContent = 'REMOVE';
   const nameCar = document.createElement('div');
   nameCar.classList.add('name__car');
-  nameCar.textContent = /*car.name*/ 'MERSEDES';
+  nameCar.textContent = car.name;
 
   headerTrak.appendChild(btnSelect);
   headerTrak.appendChild(btnRemove);
@@ -159,10 +218,13 @@ function createTraks(/*car: Car*/) {
   const motorTrak = document.createElement('div');
   motorTrak.classList.add('motor__trak');
   const btnStar = document.createElement('button');
-  btnStar.classList.add('btn__start', 'btn__motor');
+  btnStar.classList.add('btn__start', 'btn__motor', 'btn__car');
+  btnStar.setAttribute('data-start', `${car.id}-start`);
   btnStar.textContent = 'A';
   const btnStop = document.createElement('button');
-  btnStar.classList.add('btn__stop', 'btn__motor');
+  btnStop.classList.add('btn__stop', 'btn__motor', 'btn__car');
+  btnStop.classList.add('disabled');
+  btnStop.setAttribute('data-stop', `${car.id}-stop`);
   btnStop.setAttribute('disabled', 'disabled');
   btnStop.textContent = 'B';
 
@@ -172,7 +234,7 @@ function createTraks(/*car: Car*/) {
   const roadTrak = document.createElement('div');
   roadTrak.classList.add('road');
 
-  const carElement = createCar();
+  const carElement = createCar(car);
   const finish = document.createElement('div');
   finish.classList.add('finish');
   const flag = document.createElement('img');
@@ -190,10 +252,11 @@ function createTraks(/*car: Car*/) {
   return wrapperCar;
 }
 
-function createCar(color = '#ff0000') {
+function createCar(car: Car) {
   const wrapperCar = document.createElement('div');
   wrapperCar.classList.add('wrapper__car');
   wrapperCar.innerHTML = `<svg 
+  id = "${car.id}-User"
   class="car"
   width="140"
   height="90"
@@ -204,7 +267,7 @@ function createCar(color = '#ff0000') {
   Created by potrace 1.15, written by Peter Selinger 2001-2017
   </metadata>
   <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-  fill=${color} stroke="#dae8ec">
+  fill=${car.color} stroke="#dae8ec">
   <path d="M3780 5409 c-108 -13 -241 -53 -350 -106 -201 -99 -336 -288 -444
   -618 -30 -93 -64 -224 -82 -312 -2 -12 -14 -28 -27 -34 -12 -6 -38 -26 -57
   -44 l-35 -33 -180 -6 c-563 -21 -838 -78 -1200 -250 -440 -210 -760 -508
@@ -254,4 +317,59 @@ function createCar(color = '#ff0000') {
   </g>
   </svg>`;
   return wrapperCar;
+}
+
+function creatWinners() {
+  const wrapper = document.querySelector('.wrapper');
+  const wrapperWinners = document.createElement('div');
+  wrapperWinners.classList.add('wrapper__winners');
+
+  const winnresTitle = document.createElement('h2');
+  winnresTitle.classList.add('winnres__title');
+  winnresTitle.textContent = 'Winners';
+
+  const winnersPage = document.createElement('h3');
+  winnersPage.classList.add('winners__page');
+  winnersPage.textContent = 'Page';
+
+  const tableWinners = document.createElement('table');
+  tableWinners.classList.add('table-winners');
+
+  const tr = document.createElement('tr');
+
+  const thNumber = document.createElement('th');
+  thNumber.classList.add('table__title');
+  thNumber.textContent = 'Number';
+
+  const thCar = document.createElement('th');
+  thCar.classList.add('table__title');
+  thCar.textContent = 'Car';
+
+  const thName = document.createElement('th');
+  thName.classList.add('table__title');
+  thName.textContent = 'Name';
+
+  const thWins = document.createElement('th');
+  thWins.classList.add('table__title');
+  thWins.textContent = 'Wins';
+  thWins.setAttribute('data-sort-name', 'wins');
+
+  const thTime = document.createElement('th');
+  thTime.classList.add('table__title');
+  thTime.textContent = 'Time';
+  thTime.setAttribute('data-sort-name', 'time');
+
+  tr.appendChild(thNumber);
+  tr.appendChild(thCar);
+  tr.appendChild(thName);
+  tr.appendChild(thWins);
+  tr.appendChild(thTime);
+
+  tableWinners.appendChild(tr);
+
+  wrapperWinners?.appendChild(winnresTitle);
+  wrapperWinners?.appendChild(winnersPage);
+  wrapperWinners?.appendChild(tableWinners);
+  wrapperWinners?.appendChild(addBtnPagination());
+  wrapper?.appendChild(wrapperWinners);
 }
