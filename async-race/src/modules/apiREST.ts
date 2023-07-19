@@ -1,5 +1,5 @@
 import { Car /*Speed, Winner*/ } from './dataBase';
-import { addPlaceTraks } from './creatHTMLnew';
+import { addPlaceTraks } from './creatHTML';
 
 export const baseURL = 'http://localhost:3000';
 export const garage = `${baseURL}/garage`;
@@ -36,4 +36,23 @@ export async function createNewCar(
     return car as Car;
   }
   throw new Error('Error for new car');
+}
+
+export async function deleteCar(id: string): Promise<void> {
+  await fetch(`${garage}/${id}`, {
+    method: 'DELETE',
+  });
+}
+/////////////////////////////////////////////////////////////////////////////////////
+
+export async function updateCar(id: string, carData: Car): Promise<Car> {
+  const car = await fetch(`${garage}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(carData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const res = car.json();
+  return res;
 }

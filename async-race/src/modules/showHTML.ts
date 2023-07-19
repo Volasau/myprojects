@@ -1,4 +1,4 @@
-import { addBody /*creatGarage*/ } from './creatHTMLnew';
+import { addBody /*creatGarage*/ } from './creatHTML';
 
 export function showHTML() {
   addBody();

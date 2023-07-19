@@ -1,5 +1,10 @@
-import { Car /*Winner*/ } from './dataBase';
-import { getCarsList, createNewCar } from './apiREST';
+import { Car } from './dataBase';
+import { getCarsList } from './apiREST';
+import {
+  handleCarRemoval,
+  handleUpdateClick,
+  handleCreateCar,
+} from './carActions';
 
 export function addBody() {
   const { body } = document;
@@ -62,7 +67,7 @@ export function creatGarage() {
   wrapper?.append(garageWrapper);
   garageWrapper.append(menuGarage);
   menuGarage.appendChild(garageMenuCreate());
-  menuGarage.appendChild(garageMenuUpdate());
+  // menuGarage.appendChild(garageMenuUpdate());
   menuGarage.appendChild(garageManagment());
   getCarsList()
     .then((cars) => {
@@ -79,34 +84,27 @@ function garageMenuCreate() {
   menuCreat.classList.add('menu__create', 'menu__wrapper');
   const inputTextCreate = document.createElement('input');
   inputTextCreate.type = 'text';
-  inputTextCreate.classList.add('input', 'input__create', 'input__text');
+  inputTextCreate.classList.add(
+    'input',
+    'input__create',
+    'input__text',
+    'input__creat-text'
+  );
 
   const inputColorCreate = document.createElement('input');
   inputColorCreate.type = 'color';
-  inputColorCreate.classList.add('input', 'input__create', 'input__color');
+  inputColorCreate.classList.add(
+    'input',
+    'input__create',
+    'input__color',
+    'input__creat-color'
+  );
 
   const buttonCreate = document.createElement('button');
-  buttonCreate.classList.add('btn__menu', 'btn');
+  buttonCreate.classList.add('btn__menu', 'btn', 'btn__create');
   buttonCreate.textContent = 'CREATE';
+  buttonCreate.addEventListener('click', handleCreateCar);
 
-  buttonCreate.addEventListener('click', function () {
-    const name = inputTextCreate.value;
-    const color = inputColorCreate.value;
-
-    const garageWrapper = document.querySelector('.garage__wrapper');
-    if (garageWrapper) {
-      garageWrapper.remove();
-    }
-
-    createNewCar(name, color)
-      .then((car) => {
-        console.log('Новая машина успешно добавлена:', car);
-        creatGarage();
-      })
-      .catch((error) => {
-        console.log('Произошла ошибка при добавлении новой машины:', error);
-      });
-  });
   menuCreat.append(inputTextCreate);
   menuCreat.append(inputColorCreate);
   menuCreat.append(buttonCreate);
@@ -115,7 +113,8 @@ function garageMenuCreate() {
 
 function garageMenuUpdate() {
   const menuUpdate = document.createElement('div');
-  menuUpdate.classList.add('menu__create', 'menu__wrapper');
+  menuUpdate.classList.add('menu__update', 'menu__wrapper');
+
   const inputTextUpdate = document.createElement('input');
   inputTextUpdate.type = 'text';
   inputTextUpdate.classList.add('input', 'input__update', 'input__text');
@@ -125,11 +124,13 @@ function garageMenuUpdate() {
   inputColorUpdate.classList.add('input', 'input__update', 'input__color');
 
   const buttonUpdate = document.createElement('button');
-  buttonUpdate.classList.add('btn__menu', 'btn');
+  buttonUpdate.classList.add('btn__menu', 'btn', 'btn__update');
   buttonUpdate.textContent = 'UPDATE';
+
   menuUpdate.append(inputTextUpdate);
   menuUpdate.append(inputColorUpdate);
   menuUpdate.append(buttonUpdate);
+
   return menuUpdate;
 }
 
@@ -159,7 +160,7 @@ export function addPlaceTraks(cars: Car[]) {
   placeRace.classList.add('place__race');
   const pageTitle = document.createElement('h2');
   pageTitle.classList.add('page__title');
-  pageTitle.textContent = 'GARAGE';
+  pageTitle.textContent = `GARAGE (${cars.length})`;
   const pageNumber = document.createElement('h3');
   pageNumber.classList.add('page__num');
   pageNumber.textContent = 'page';
@@ -169,6 +170,7 @@ export function addPlaceTraks(cars: Car[]) {
   placeRace.appendChild(pageTitle);
   placeRace.appendChild(pageNumber);
   placeRace.appendChild(raceTracks);
+  // console.log(cars.length);
   cars.forEach((car) => {
     const track = createTraks(car);
     raceTracks.appendChild(track);
@@ -197,16 +199,42 @@ function createTraks(car: Car) {
   wrapperCar.id = `${car.id}`;
   const headerTrak = document.createElement('div');
   headerTrak.classList.add('header__trak');
-  const btnSelect = document.createElement('button');
+
+  const btnSelect: HTMLButtonElement = document.createElement('button');
   btnSelect.classList.add('btn__car', 'btn__select', 'btn');
   btnSelect.setAttribute('data-select', `${car.id}-select`);
-
   btnSelect.textContent = 'SELECT';
+
+  let isMenuUpdateOpen = false;
+
+  btnSelect.addEventListener('click', () => {
+    if (!isMenuUpdateOpen) {
+      const menuUpdate: HTMLDivElement = garageMenuUpdate();
+      if (menuUpdate) {
+        const buttonUpdate: HTMLButtonElement | null =
+          menuUpdate.querySelector('.btn__update');
+        if (buttonUpdate) {
+          buttonUpdate.addEventListener(
+            'click',
+            handleUpdateClick(btnSelect, menuUpdate, wrapperCar)
+          );
+        }
+
+        headerTrak.appendChild(menuUpdate);
+        isMenuUpdateOpen = true;
+      }
+    }
+  });
+
   const btnRemove = document.createElement('button');
   btnRemove.classList.add('btn__car', 'btn__remove', 'btn');
   btnRemove.setAttribute('data-remove', `${car.id}-remove`);
-
   btnRemove.textContent = 'REMOVE';
+
+  btnRemove.addEventListener('click', async () => {
+    await handleCarRemoval(car.id.toString(), wrapperCar);
+  });
+
   const nameCar = document.createElement('div');
   nameCar.classList.add('name__car');
   nameCar.textContent = car.name;

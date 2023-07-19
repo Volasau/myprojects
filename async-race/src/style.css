@@ -130,6 +130,7 @@ h1 {
 }
 
 .road {
+  height: 55px;
   display: flex;
   justify-content: space-between;
 }
@@ -170,6 +171,7 @@ h1 {
 }
 
 .btn__car {
+  height: 27px;
   margin-right: 8px;
   cursor: pointer;
 }
