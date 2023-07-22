@@ -1,6 +1,17 @@
-import { createNewCar, deleteCar, getCarsList, updateCar } from './apiREST';
+import {
+  createNewCar,
+  deleteCar,
+  getCarsList,
+  updateCar,
+  startEngine,
+  switchCar,
+} from './apiREST';
 import { creatGarage } from './creatHTML';
-import { Car, carBrands } from './dataBase';
+import { Car, carBrands /*moveCar*/ } from './dataBase';
+
+interface ICar extends HTMLElement {
+  requestID: number;
+}
 
 export async function handleCarRemoval(
   carId: string,
@@ -47,12 +58,12 @@ export function handleCreateCar() {
   }
 
   createNewCar(name, color)
-    .then((car) => {
-      console.log('Новая машина успешно добавлена:', car);
+    .then((/*car*/) => {
+      // console.log('Новая машина успешно добавлена:', car);
       creatGarage();
     })
-    .catch((error) => {
-      console.log('Произошла ошибка при добавлении новой машины:', error);
+    .catch((/*error*/) => {
+      // console.log('Произошла ошибка при добавлении новой машины:', error);
     });
 }
 
@@ -122,4 +133,45 @@ export function handleUpdateClick(
       console.error(error);
     }
   };
+}
+
+export function handleStartClick(carId: string) {
+  startEngine(Number(carId));
+}
+
+export async function moveCarForward(id: string, time: number) {
+  const road = document.getElementById(`${id}`) as HTMLElement;
+
+  const car = road.querySelector('.car') as ICar;
+  const finish = road.querySelector('.flag') as HTMLElement;
+
+  const carView = car.getBoundingClientRect();
+  const finishView = finish.getBoundingClientRect();
+  const startX = carView.x;
+  const finishX = finishView.x + finishView.width;
+
+  const length = finishX - startX;
+  const timeMs = time * 1000;
+  let start: number | null = null;
+  const velocity = length / time;
+  const state: Car = { name: '', color: '', id: 0 };
+  function step(currentTime: number) {
+    if (!start) start = currentTime;
+    const progress = currentTime - start;
+    const newX = (progress / 1000) * velocity;
+
+    car.style.transform = `translateX(${newX}px)`;
+
+    if (progress < timeMs) {
+      state.id = window.requestAnimationFrame(step);
+    }
+  }
+
+  state.id = window.requestAnimationFrame(step);
+
+  try {
+    await switchCar(id);
+  } catch {
+    window.cancelAnimationFrame(+state.id);
+  }
 }

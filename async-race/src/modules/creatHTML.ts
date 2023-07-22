@@ -4,6 +4,7 @@ import {
   handleCarRemoval,
   handleUpdateClick,
   handleCreateCar,
+  handleStartClick,
 } from './carActions';
 
 export function addBody() {
@@ -249,6 +250,12 @@ function createTraks(car: Car) {
   btnStar.classList.add('btn__start', 'btn__motor', 'btn__car');
   btnStar.setAttribute('data-start', `${car.id}-start`);
   btnStar.textContent = 'A';
+  //////////////////////////////////////////////////////////////////////////////START
+  btnStar.addEventListener('click', () => {
+    const carId = car.id;
+    handleStartClick(carId.toString());
+  });
+
   const btnStop = document.createElement('button');
   btnStop.classList.add('btn__stop', 'btn__motor', 'btn__car');
   btnStop.classList.add('disabled');
@@ -268,6 +275,7 @@ function createTraks(car: Car) {
   const flag = document.createElement('img');
   flag.classList.add('flag');
   flag.src = '../assets/Flag.png';
+  // flag.src = '../assets/Flag20.png';
   finish.appendChild(flag);
 
   roadTrak.appendChild(carElement);
@@ -286,7 +294,7 @@ function createCar(car: Car) {
   wrapperCar.innerHTML = `<svg 
   id = "${car.id}-User"
   class="car"
-  width="140"
+  width="95"
   height="90"
   version="1.0" xmlns="http://www.w3.org/2000/svg"
    width="1280.000000pt" height="1280.000000pt" viewBox="0 0 1280.000000 1280.000000"
