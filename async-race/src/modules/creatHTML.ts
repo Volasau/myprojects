@@ -5,6 +5,10 @@ import {
   handleUpdateClick,
   handleCreateCar,
   handleStartClick,
+  getInfoCar,
+  startRace,
+  handleStopClick,
+  stopRace,
 } from './carActions';
 
 export function addBody() {
@@ -94,6 +98,7 @@ function garageMenuCreate() {
 
   const inputColorCreate = document.createElement('input');
   inputColorCreate.type = 'color';
+  inputColorCreate.value = '#00ff00';
   inputColorCreate.classList.add(
     'input',
     'input__create',
@@ -140,11 +145,18 @@ function garageManagment() {
   containerBtn.classList.add('container__btn-manag');
 
   const butnRace = document.createElement('button');
-  butnRace.classList.add('btn__menu', 'btn__manag', 'btn');
+  butnRace.classList.add('btn__menu', 'btn__manag', 'btn', 'btn__race');
   butnRace.textContent = 'RACE';
+
+  butnRace.addEventListener('click', startRace);
+
   const butnReset = document.createElement('button');
-  butnReset.classList.add('btn__menu', 'btn__manag', 'btn');
+  butnReset.classList.add('btn__menu', 'btn__manag', 'btn', 'btn__reset');
+  butnReset.setAttribute('disabled', 'disabled');
   butnReset.textContent = 'RESET';
+
+  butnReset.addEventListener('click', stopRace);
+
   const butnCenerateCar = document.createElement('button');
   butnCenerateCar.classList.add('btn__menu', 'btn__cenerate', 'btn');
   butnCenerateCar.textContent = 'GENERATE CARS';
@@ -202,7 +214,7 @@ function createTraks(car: Car) {
   headerTrak.classList.add('header__trak');
 
   const btnSelect: HTMLButtonElement = document.createElement('button');
-  btnSelect.classList.add('btn__car', 'btn__select', 'btn');
+  btnSelect.classList.add('btn__car', 'btn__select', 'btn', 'btn__car-menu');
   btnSelect.setAttribute('data-select', `${car.id}-select`);
   btnSelect.textContent = 'SELECT';
 
@@ -211,6 +223,7 @@ function createTraks(car: Car) {
   btnSelect.addEventListener('click', () => {
     if (!isMenuUpdateOpen) {
       const menuUpdate: HTMLDivElement = garageMenuUpdate();
+      getInfoCar(menuUpdate, btnSelect);
       if (menuUpdate) {
         const buttonUpdate: HTMLButtonElement | null =
           menuUpdate.querySelector('.btn__update');
@@ -228,7 +241,7 @@ function createTraks(car: Car) {
   });
 
   const btnRemove = document.createElement('button');
-  btnRemove.classList.add('btn__car', 'btn__remove', 'btn');
+  btnRemove.classList.add('btn__car', 'btn__remove', 'btn', 'btn__car-menu');
   btnRemove.setAttribute('data-remove', `${car.id}-remove`);
   btnRemove.textContent = 'REMOVE';
 
@@ -249,6 +262,10 @@ function createTraks(car: Car) {
   const btnStar = document.createElement('button');
   btnStar.classList.add('btn__start', 'btn__motor', 'btn__car');
   btnStar.setAttribute('data-start', `${car.id}-start`);
+
+  //////////////////////////////////////////////////----------------------------/
+  btnStar.setAttribute('data-car-id', `${car.id}`);
+  //////////////////////////////////////////////////----------------------------/
   btnStar.textContent = 'A';
   //////////////////////////////////////////////////////////////////////////////START
   btnStar.addEventListener('click', () => {
@@ -258,10 +275,17 @@ function createTraks(car: Car) {
 
   const btnStop = document.createElement('button');
   btnStop.classList.add('btn__stop', 'btn__motor', 'btn__car');
-  btnStop.classList.add('disabled');
+  // btnStop.classList.add('disabled');
   btnStop.setAttribute('data-stop', `${car.id}-stop`);
+  btnStop.setAttribute('data-car-id', `${car.id}`);
+
   btnStop.setAttribute('disabled', 'disabled');
   btnStop.textContent = 'B';
+
+  btnStop.addEventListener('click', () => {
+    const carId = car.id;
+    handleStopClick(carId.toString());
+  });
 
   motorTrak.appendChild(btnStar);
   motorTrak.appendChild(btnStop);
@@ -275,7 +299,6 @@ function createTraks(car: Car) {
   const flag = document.createElement('img');
   flag.classList.add('flag');
   flag.src = '../assets/Flag.png';
-  // flag.src = '../assets/Flag20.png';
   finish.appendChild(flag);
 
   roadTrak.appendChild(carElement);
@@ -287,6 +310,10 @@ function createTraks(car: Car) {
 
   return wrapperCar;
 }
+
+/////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
 
 function createCar(car: Car) {
   const wrapperCar = document.createElement('div');

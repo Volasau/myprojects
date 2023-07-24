@@ -5,6 +5,8 @@ import {
   updateCar,
   startEngine,
   switchCar,
+  getCar,
+  stopEngine,
 } from './apiREST';
 import { creatGarage } from './creatHTML';
 import { Car, carBrands /*moveCar*/ } from './dataBase';
@@ -58,12 +60,12 @@ export function handleCreateCar() {
   }
 
   createNewCar(name, color)
-    .then((/*car*/) => {
-      // console.log('Новая машина успешно добавлена:', car);
+    .then((car) => {
+      console.log('Новая машина успешно добавлена:', car);
       creatGarage();
     })
-    .catch((/*error*/) => {
-      // console.log('Произошла ошибка при добавлении новой машины:', error);
+    .catch((error) => {
+      console.log('Произошла ошибка при добавлении новой машины:', error);
     });
 }
 
@@ -135,9 +137,14 @@ export function handleUpdateClick(
   };
 }
 
-export function handleStartClick(carId: string) {
+export function handleStartClick(carId: string): Promise<void> {
   startEngine(Number(carId));
+  removeDisableStop(carId);
+  addDisableStart(carId);
+  return Promise.resolve();
 }
+
+let animationRequestId: number | null = null;
 
 export async function moveCarForward(id: string, time: number) {
   const road = document.getElementById(`${id}`) as HTMLElement;
@@ -147,6 +154,7 @@ export async function moveCarForward(id: string, time: number) {
 
   const carView = car.getBoundingClientRect();
   const finishView = finish.getBoundingClientRect();
+  // console.log(finishView);
   const startX = carView.x;
   const finishX = finishView.x + finishView.width;
 
@@ -154,7 +162,6 @@ export async function moveCarForward(id: string, time: number) {
   const timeMs = time * 1000;
   let start: number | null = null;
   const velocity = length / time;
-  const state: Car = { name: '', color: '', id: 0 };
   function step(currentTime: number) {
     if (!start) start = currentTime;
     const progress = currentTime - start;
@@ -163,15 +170,142 @@ export async function moveCarForward(id: string, time: number) {
     car.style.transform = `translateX(${newX}px)`;
 
     if (progress < timeMs) {
-      state.id = window.requestAnimationFrame(step);
+      animationRequestId = window.requestAnimationFrame(step);
     }
   }
 
-  state.id = window.requestAnimationFrame(step);
+  animationRequestId = window.requestAnimationFrame(step);
 
   try {
     await switchCar(id);
   } catch {
-    window.cancelAnimationFrame(+state.id);
+    stopEngine(id);
+    if (animationRequestId) {
+      window.cancelAnimationFrame(animationRequestId);
+      animationRequestId = null;
+    }
   }
+}
+
+export async function getInfoCar(
+  menuUpdate: HTMLDivElement,
+  btnSelect: HTMLButtonElement
+) {
+  const newNameInput = menuUpdate.querySelector(
+    '.input__text'
+  ) as HTMLInputElement;
+  const newColorInput = menuUpdate.querySelector(
+    '.input__color'
+  ) as HTMLInputElement;
+  const currentCarId = parseInt(
+    btnSelect.getAttribute('data-select')?.split('-')[0] || '0',
+    10
+  );
+
+  if (currentCarId) {
+    const currentCar: Car = await getCar(currentCarId.toString());
+    newNameInput.value = currentCar.name;
+    newColorInput.value = currentCar.color;
+  }
+}
+
+export async function startRace() {
+  const btnReset = document.querySelector('.btn__reset');
+  const btnRace = document.querySelector('.btn__race');
+
+  const allBtnStars = document.querySelectorAll('.btn__start');
+  allBtnStars.forEach(async (btnStar) => {
+    const carId = btnStar.getAttribute('data-car-id');
+    if (carId) {
+      await handleStartClick(carId);
+    }
+  });
+
+  if (btnReset) {
+    setTimeout(() => {
+      btnReset.removeAttribute('disabled');
+    }, 8000);
+  }
+  if (btnRace) {
+    btnRace.setAttribute('disabled', 'disabled');
+  }
+  addDisableAllBtnCars();
+}
+
+export async function stopRace() {
+  const btnRace = document.querySelector('.btn__race');
+
+  const btnReset = document.querySelector('.btn__reset');
+  const allBtnStop = document.querySelectorAll('.btn__stop');
+  allBtnStop.forEach(async (btnStop) => {
+    const carId = btnStop.getAttribute('data-car-id');
+    if (carId) {
+      await handleStopClick(carId);
+    }
+  });
+  if (btnRace) {
+    btnRace.removeAttribute('disabled');
+  }
+  if (btnReset) {
+    btnReset.setAttribute('disabled', 'disabled');
+  }
+  removedisableAllBtnCars();
+}
+
+export function returnCarToStart(id: string) {
+  const road = document.getElementById(`${id}`) as HTMLElement;
+  const domCar = road.querySelector('.car') as HTMLElement;
+  domCar.style.transform = `translateX(0)`;
+}
+
+export async function handleStopClick(carId: string) {
+  if (animationRequestId) {
+    window.cancelAnimationFrame(animationRequestId);
+    animationRequestId = null;
+  }
+  returnCarToStart(carId);
+  stopEngine(carId);
+  removeDisableStart(carId);
+  addDisableStop(carId);
+}
+
+export function removeDisableStop(carId: string) {
+  const btnStop = document.querySelector(`[data-stop="${carId}-stop"]`);
+  if (btnStop) {
+    btnStop.removeAttribute('disabled');
+  }
+}
+
+export function addDisableStart(carId: string) {
+  const btnStar = document.querySelector(`[data-start="${carId}-start"]`);
+  if (btnStar) {
+    btnStar.setAttribute('disabled', 'disabled');
+  }
+}
+
+export function removeDisableStart(carId: string) {
+  const btnStar = document.querySelector(`[data-start="${carId}-start"]`);
+  if (btnStar) {
+    btnStar.removeAttribute('disabled');
+  }
+}
+
+export function addDisableStop(carId: string) {
+  const btnStop = document.querySelector(`[data-stop="${carId}-stop"]`);
+  if (btnStop) {
+    btnStop.setAttribute('disabled', 'disabled');
+  }
+}
+
+function addDisableAllBtnCars() {
+  const allBtnCars = document.querySelectorAll('.btn__car-menu');
+  allBtnCars.forEach((btnCar) => {
+    btnCar.setAttribute('disabled', 'disabled');
+  });
+}
+function removedisableAllBtnCars() {
+  const allBtnCars = document.querySelectorAll('.btn__car-menu');
+  allBtnCars.forEach((btnCar) => {
+    btnCar.removeAttribute('disabled');
+  });
 }

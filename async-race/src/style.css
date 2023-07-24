@@ -200,6 +200,7 @@ h1 {
 .disabled {
   border-color: grey;
   color: grey;
+  cursor: default;
 }
 
 
@@ -220,4 +221,19 @@ h1 {
   bottom: 0;
   right: 150px;
   max-width: 50px;
+}
+
+
+.btn__manag:disabled {
+  color: #51395f;
+  background: #888888;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn__car:disabled {
+  color: #51395f;
+  background: #888888;
+  opacity: 0.5;
+  cursor: default;
 }
