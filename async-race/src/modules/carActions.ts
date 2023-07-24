@@ -9,7 +9,7 @@ import {
   stopEngine,
 } from './apiREST';
 import { creatGarage } from './creatHTML';
-import { Car, carBrands /*moveCar*/ } from './dataBase';
+import { Car, carBrands, carModels, getRandomColor } from './dataBase';
 
 interface ICar extends HTMLElement {
   requestID: number;
@@ -30,7 +30,7 @@ export async function handleCarRemoval(
       });
     }
   } catch (error) {
-    console.log('Произошла ошибка при удалении машины:', error);
+    // console.log('Произошла ошибка при удалении машины:', error);
   }
 }
 
@@ -42,7 +42,7 @@ export function handleCreateCar() {
   );
 
   if (!inputTextCreate || !inputColorCreate) {
-    console.error('Не удалось найти поля ввода');
+    // console.error('Не удалось найти поля ввода');
     return;
   }
 
@@ -60,12 +60,12 @@ export function handleCreateCar() {
   }
 
   createNewCar(name, color)
-    .then((car) => {
-      console.log('Новая машина успешно добавлена:', car);
+    .then((/*car*/) => {
+      // console.log('Новая машина успешно добавлена:', car);
       creatGarage();
     })
-    .catch((error) => {
-      console.log('Произошла ошибка при добавлении новой машины:', error);
+    .catch((/*error*/) => {
+      // console.log('Произошла ошибка при добавлении новой машины:', error);
     });
 }
 
@@ -132,7 +132,7 @@ export function handleUpdateClick(
         }
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 }
@@ -224,7 +224,7 @@ export async function startRace() {
   if (btnReset) {
     setTimeout(() => {
       btnReset.removeAttribute('disabled');
-    }, 8000);
+    }, 10000);
   }
   if (btnRace) {
     btnRace.setAttribute('disabled', 'disabled');
@@ -268,44 +268,64 @@ export async function handleStopClick(carId: string) {
   removeDisableStart(carId);
   addDisableStop(carId);
 }
-
+//Удаляем атрибут disabled для кнопок  Стаоп для машинок
 export function removeDisableStop(carId: string) {
   const btnStop = document.querySelector(`[data-stop="${carId}-stop"]`);
   if (btnStop) {
     btnStop.removeAttribute('disabled');
   }
 }
-
+//Добавляем атрибут disabled для кнопок  Старт для машинок
 export function addDisableStart(carId: string) {
   const btnStar = document.querySelector(`[data-start="${carId}-start"]`);
   if (btnStar) {
     btnStar.setAttribute('disabled', 'disabled');
   }
 }
-
+//Удаляем атрибут disabled для кнопок  Старт для машинок
 export function removeDisableStart(carId: string) {
   const btnStar = document.querySelector(`[data-start="${carId}-start"]`);
   if (btnStar) {
     btnStar.removeAttribute('disabled');
   }
 }
-
+//Добавляем атрибут disabled для кнопок  Стоп для машинок
 export function addDisableStop(carId: string) {
   const btnStop = document.querySelector(`[data-stop="${carId}-stop"]`);
   if (btnStop) {
     btnStop.setAttribute('disabled', 'disabled');
   }
 }
-
+//Добавляем атрибут disabled для кнопок  Select и Remove для машинок
 function addDisableAllBtnCars() {
   const allBtnCars = document.querySelectorAll('.btn__car-menu');
   allBtnCars.forEach((btnCar) => {
     btnCar.setAttribute('disabled', 'disabled');
   });
 }
+//Удалям атрибут disabled на кнопках Select и Remove для машинок
 function removedisableAllBtnCars() {
   const allBtnCars = document.querySelectorAll('.btn__car-menu');
   allBtnCars.forEach((btnCar) => {
     btnCar.removeAttribute('disabled');
   });
+}
+
+//Создаем 10 машинок так как не справился с пагинацией и 100 машинок переполнят страницу
+export function generateCars() {
+  const garageWrapper = document.querySelector('.garage__wrapper');
+  if (garageWrapper) {
+    garageWrapper.remove();
+  }
+  for (let i = 0; i < 10; i++) {
+    const randomIndex1 = Math.floor(Math.random() * carBrands.length);
+    const randomIndex2 = Math.floor(Math.random() * carModels.length);
+    const name = `${carBrands[randomIndex1]} ${carModels[randomIndex2]}`;
+    const color = getRandomColor();
+    createNewCar(name, color).then(() => {
+      if (i === 9) {
+        creatGarage();
+      }
+    });
+  }
 }

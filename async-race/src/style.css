@@ -237,3 +237,12 @@ h1 {
   opacity: 0.5;
   cursor: default;
 }
+
+.wrapper__winners {
+  margin-left: 10px;
+}
+
+td {
+  padding: 10px 35px 10px 35px;
+  border: 1px solid #0d6efd;
+}

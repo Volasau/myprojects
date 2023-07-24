@@ -1,5 +1,5 @@
-import { moveCarForward /*stopCar*/ } from './carActions';
-import { Car, Speed /*Winner*/ } from './dataBase';
+import { moveCarForward } from './carActions';
+import { Car, Speed, Winner } from './dataBase';
 // import /* addPlaceTraks*/ './creatHTML';
 
 export const baseURL = 'http://localhost:3000';
@@ -88,4 +88,70 @@ export async function switchCar(id: string) {
   const car = await response.json();
   const success = car.success;
   return success;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+export async function getWinners(): Promise<Winner[]> {
+  const allCarsFetch = await fetch(garage);
+  const winCarsFetch = await fetch(winners);
+
+  const allCars = await allCarsFetch.json();
+  const winCars = await winCarsFetch.json();
+  // console.log(allCars);
+  // console.log(winCars);
+
+  const result = allCars
+    .map((item: Car) => {
+      if (!winCars) return {};
+
+      for (let i = 0; i < winCars.length; i++) {
+        if (item.id === winCars[i].id) {
+          return { ...winCars[i], car: { ...item } };
+        }
+      }
+      return {};
+    })
+    .filter((item: Winner) => item.car);
+  // console.log(result);
+  return result;
+}
+
+export async function createWinner(data: Winner): Promise<Winner> {
+  const car = await fetch(`${winners}`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return car.json();
+}
+
+export async function getWinner(id: string): Promise<Winner> {
+  const car = await fetch(`${winners}/${id}`);
+  return car.json();
+}
+
+export async function updateWinner(id: string, item: Winner): Promise<Winner> {
+  const car = await fetch(`${winners}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return car.json();
+}
+
+export async function deleteWinner(delId: string): Promise<void | Winner> {
+  const data = await getWinners();
+
+  if (data.some((item) => item.id === Number(delId))) {
+    const deleteCar = await fetch(`${winners}/${delId}`, {
+      method: 'DELETE',
+    });
+    return deleteCar.json();
+  }
+  return;
 }
