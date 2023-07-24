@@ -7,14 +7,16 @@ import {
   switchCar,
   getCar,
   stopEngine,
+  createWinner,
 } from './apiREST';
 import { creatGarage } from './creatHTML';
-import { Car, carBrands, carModels, getRandomColor } from './dataBase';
+import { Car, Winner, carBrands, carModels, getRandomColor } from './dataBase';
 
 interface ICar extends HTMLElement {
   requestID: number;
 }
 
+//Функция для удаления машинки
 export async function handleCarRemoval(
   carId: string,
   wrapperCar: HTMLDivElement
@@ -34,6 +36,7 @@ export async function handleCarRemoval(
   }
 }
 
+//Функция для добавления новой машинки
 export function handleCreateCar() {
   const inputTextCreate: HTMLInputElement | null =
     document.querySelector('.input__creat-text');
@@ -42,7 +45,6 @@ export function handleCreateCar() {
   );
 
   if (!inputTextCreate || !inputColorCreate) {
-    // console.error('Не удалось найти поля ввода');
     return;
   }
 
@@ -69,6 +71,7 @@ export function handleCreateCar() {
     });
 }
 
+//функция для смены названия и цвета машинки
 export function handleUpdateClick(
   btnSelect: HTMLButtonElement,
   menuUpdate: HTMLDivElement,
@@ -137,6 +140,7 @@ export function handleUpdateClick(
   };
 }
 
+//Функция для старта машинки
 export function handleStartClick(carId: string): Promise<void> {
   startEngine(Number(carId));
   removeDisableStop(carId);
@@ -144,20 +148,19 @@ export function handleStartClick(carId: string): Promise<void> {
   return Promise.resolve();
 }
 
+//Функция анимации гонки
 let animationRequestId: number | null = null;
+let finishedCars: string[] = [];
+// let winnerId: string | null = null;
 
 export async function moveCarForward(id: string, time: number) {
   const road = document.getElementById(`${id}`) as HTMLElement;
-
   const car = road.querySelector('.car') as ICar;
   const finish = road.querySelector('.flag') as HTMLElement;
-
   const carView = car.getBoundingClientRect();
   const finishView = finish.getBoundingClientRect();
-  // console.log(finishView);
   const startX = carView.x;
   const finishX = finishView.x + finishView.width;
-
   const length = finishX - startX;
   const timeMs = time * 1000;
   let start: number | null = null;
@@ -166,18 +169,28 @@ export async function moveCarForward(id: string, time: number) {
     if (!start) start = currentTime;
     const progress = currentTime - start;
     const newX = (progress / 1000) * velocity;
-
     car.style.transform = `translateX(${newX}px)`;
-
     if (progress < timeMs) {
       animationRequestId = window.requestAnimationFrame(step);
     }
   }
-
   animationRequestId = window.requestAnimationFrame(step);
-
   try {
     await switchCar(id);
+    finishedCars.push(id);
+    // console.log(finishedCars);
+    if (finishedCars.length === 1) {
+      // winnerId = id;
+
+      const winnerData: Winner = {
+        id: parseInt(id),
+        name: '',
+        color: '',
+        wins: 1,
+        time: parseFloat(time.toFixed(3)),
+      };
+      await createWinner(winnerData);
+    }
   } catch {
     stopEngine(id);
     if (animationRequestId) {
@@ -187,6 +200,7 @@ export async function moveCarForward(id: string, time: number) {
   }
 }
 
+//Функция для получения информации о имени и цвета машинки
 export async function getInfoCar(
   menuUpdate: HTMLDivElement,
   btnSelect: HTMLButtonElement
@@ -209,10 +223,10 @@ export async function getInfoCar(
   }
 }
 
+//Функция для старта гонки
 export async function startRace() {
   const btnReset = document.querySelector('.btn__reset');
   const btnRace = document.querySelector('.btn__race');
-
   const allBtnStars = document.querySelectorAll('.btn__start');
   allBtnStars.forEach(async (btnStar) => {
     const carId = btnStar.getAttribute('data-car-id');
@@ -230,11 +244,13 @@ export async function startRace() {
     btnRace.setAttribute('disabled', 'disabled');
   }
   addDisableAllBtnCars();
+  finishedCars = [];
+  // winnerId = null;
 }
 
+//функция для возврата машинок на старт после гонки
 export async function stopRace() {
   const btnRace = document.querySelector('.btn__race');
-
   const btnReset = document.querySelector('.btn__reset');
   const allBtnStop = document.querySelectorAll('.btn__stop');
   allBtnStop.forEach(async (btnStop) => {
@@ -251,13 +267,13 @@ export async function stopRace() {
   }
   removedisableAllBtnCars();
 }
-
+//Функция для перемещения машинки на старт
 export function returnCarToStart(id: string) {
   const road = document.getElementById(`${id}`) as HTMLElement;
   const domCar = road.querySelector('.car') as HTMLElement;
   domCar.style.transform = `translateX(0)`;
 }
-
+//Функция для остановки машинки
 export async function handleStopClick(carId: string) {
   if (animationRequestId) {
     window.cancelAnimationFrame(animationRequestId);
@@ -298,6 +314,10 @@ export function addDisableStop(carId: string) {
 }
 //Добавляем атрибут disabled для кнопок  Select и Remove для машинок
 function addDisableAllBtnCars() {
+  const btnCreate = document.querySelector('.btn__create');
+  btnCreate?.setAttribute('disabled', 'disabled');
+  const btnGenerate = document.querySelector('.btn__cenerate');
+  btnGenerate?.setAttribute('disabled', 'disabled');
   const allBtnCars = document.querySelectorAll('.btn__car-menu');
   allBtnCars.forEach((btnCar) => {
     btnCar.setAttribute('disabled', 'disabled');
@@ -305,6 +325,10 @@ function addDisableAllBtnCars() {
 }
 //Удалям атрибут disabled на кнопках Select и Remove для машинок
 function removedisableAllBtnCars() {
+  const btnCreate = document.querySelector('.btn__create');
+  btnCreate?.removeAttribute('disabled');
+  const btnGenerate = document.querySelector('.btn__cenerate');
+  btnGenerate?.removeAttribute('disabled');
   const allBtnCars = document.querySelectorAll('.btn__car-menu');
   allBtnCars.forEach((btnCar) => {
     btnCar.removeAttribute('disabled');
@@ -329,3 +353,8 @@ export function generateCars() {
     });
   }
 }
+
+// function showWinner(id: Car) {
+//   const page = document.querySelector('.page__num');
+//   const windowWinner = document.createElement('span');
+// }

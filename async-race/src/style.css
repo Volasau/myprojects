@@ -224,14 +224,10 @@ h1 {
 }
 
 
-.btn__manag:disabled {
-  color: #51395f;
-  background: #888888;
-  opacity: 0.5;
-  cursor: default;
-}
-
-.btn__car:disabled {
+.btn__manag:disabled,
+.btn__car:disabled,
+.btn__create:disabled,
+.btn__cenerate:disabled {
   color: #51395f;
   background: #888888;
   opacity: 0.5;
