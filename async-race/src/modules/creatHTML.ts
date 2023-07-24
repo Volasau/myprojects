@@ -180,7 +180,7 @@ export function addPlaceTraks(cars: Car[]) {
   pageTitle.textContent = `GARAGE (${cars.length})`;
   const pageNumber = document.createElement('h3');
   pageNumber.classList.add('page__num');
-  pageNumber.textContent = 'page';
+  pageNumber.textContent = 'page #1';
   const raceTracks = document.createElement('div');
   raceTracks.classList.add('race__tracks');
 
